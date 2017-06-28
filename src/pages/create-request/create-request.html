@@ -21,9 +21,8 @@
   <div *ngIf="request=='error'">
     <h1>There was some error while logging your request.Try again after sometime.</h1>
   </div>
-
+  <ion-card>
    <form (ngSubmit)="logRequest()">
-
       <ion-item>
         <ion-label floating>Type of Request</ion-label>  
         <ion-input type="text" required [(ngModel)]="reqtype" name="reqtype" ></ion-input>
@@ -31,13 +30,14 @@
 
       
       <ion-item>  
+        <ion-icon name="phone-portrait"></ion-icon>
         <ion-label floating>Phone Number</ion-label>
         <ion-input type="text" required [(ngModel)]="phone" name="phone" ></ion-input>
       </ion-item>
 
       <ion-item>
         <ion-label floating>Description</ion-label>
-        <ion-textarea [(ngModel)]="reqdesc" name="reqdesc"></ion-textarea>
+        <ion-textarea [(ngModel)]="reqdesc" name="reqdesc" rows="3" ></ion-textarea>
       </ion-item>
 
       <!--<ion-item>
@@ -49,6 +49,10 @@
         </ion-select>
       </ion-item>-->
 
-      <button ion-button type="submit" block>Log Request</button>
+      <!--<button ion-button type="submit" block>Log Request</button>-->
+      <ion-fab right bottom>
+        <button ion-fab type="submit"><ion-icon name="md-checkmark"></ion-icon></button>
+      </ion-fab>
     </form>
+  </ion-card>
 </ion-content>

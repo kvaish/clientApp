@@ -16,26 +16,32 @@
 <ion-content padding>
   <h1>List of All the requests</h1> 
   <p>Filter According to:-</p>
-  <label>Type:&nbsp;&nbsp;&nbsp;  </label>
+  Type:&nbsp;&nbsp;&nbsp;  
   <input type="text" [(ngModel)]="type" name="type" placeholder="Type of Request"/><br><br>  
-
-  <div class="row header">
-          <div class="col">Request Type</div>
-          <!--<div class="col">Creation Date</div>-->
-          <div class="col">Status</div>
-          <div class="col">Details</div>
-  </div>
-  <div>
-    <div class="row" *ngFor="let request of requests | requests : type ">
+<ion-list>
+<ion-grid>
+  <ion-list-header>
+  <ion-row >
+          <ion-col col-5><ion-title>Request Type</ion-title></ion-col>
+          <!--<ion-col><ion-title>Creation Date</div>-->
+          <ion-col col-4><ion-title>Status</ion-title></ion-col>
+          <ion-col col-3><ion-title>Details</ion-title></ion-col>
+  </ion-row>
+  </ion-list-header>
+    <ion-row *ngFor="let request of requests | requests : type " >
     
-      <div class="col"><label>{{request.reqtype }}</label></div>
-      <!--<div class="col"><label>{{request.createdate}}</label></div>-->
-      <div class="col"><label>{{request.status}}</label></div>
-      <div class="col">
-        <button ion-button (click)="showRequestDetails(request)">Details</button>
+      <ion-col col-5 text-center>{{request.reqtype }}</ion-col>
+      <!--<ion-col>{{request.createdate}}</div>-->
+      <ion-col col-4 text-center>{{request.status}}</ion-col>
+      <ion-col col-3 text-center>
+        <button ion-button icon-only clear (click)="showRequestDetails(request)">
+          <ion-icon name="md-more"></ion-icon>
+        </button>
         <!--<button ion-button (click)="editRequest(request)">Edit</button>-->
         
-      </div>
-    </div>
-  </div>
+      </ion-col>
+    </ion-row>
+  
+</ion-grid>
+</ion-list>
 </ion-content>

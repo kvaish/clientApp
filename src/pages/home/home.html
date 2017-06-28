@@ -47,9 +47,12 @@
   <ion-item>
     <ion-input [(ngModel)]="displayAddress" id="displayAdress" type="text" value="" placeholder="Enter Address"></ion-input>
   </ion-item>
-  <ion-buttons>
-    <button ion-button full (click)="createRequest()">Log Request</button>
-  </ion-buttons>
+ 
+    
+    <ion-fab right middle>
+      <button ion-fab (click)="createRequest()"><ion-icon name="md-add"></ion-icon></button>
+    </ion-fab>
+  
   <div #map id="map"></div>  
   
 </ion-content>
