@@ -1,0 +1,41 @@
+<!--
+  Generated template for the OnGoingRequestsPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>On Going Requests</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <h1>List of All the requests</h1> 
+  <p>Filter According to:-</p>
+  <label>Type:&nbsp;&nbsp;&nbsp;  </label>
+  <input type="text" [(ngModel)]="type" name="type" placeholder="Type of Request"/><br><br>  
+
+  <div class="row header">
+          <div class="col">Request Type</div>
+          <!--<div class="col">Creation Date</div>-->
+          <div class="col">Status</div>
+          <div class="col">Details</div>
+  </div>
+  <div>
+    <div class="row" *ngFor="let request of requests | requests : type ">
+    
+      <div class="col"><label>{{request.reqtype }}</label></div>
+      <!--<div class="col"><label>{{request.createdate}}</label></div>-->
+      <div class="col"><label>{{request.status}}</label></div>
+      <div class="col">
+        <button ion-button (click)="showRequestDetails(request)">Details</button>
+        <!--<button ion-button (click)="editRequest(request)">Edit</button>-->
+        
+      </div>
+    </div>
+  </div>
+</ion-content>
