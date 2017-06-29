@@ -16,7 +16,9 @@ import { AuthServiceProvider } from '../providers/auth-service/auth-service';
 import { UpdateProfilePage } from '../pages/update-profile/update-profile';
 import { AccountsPage } from '../pages/accounts/accounts';
 import { HttpModule} from '@angular/http';
-import { RequestProvider } from '../providers/request/request';
+import { RequestProvider } from '../providers/request/request'; 
+import {IonicStorageModule} from '@ionic/Storage';
+import {Storage} from '@ionic/Storage';
 //import { RequestsPipe } from '../pipes/requests/requests';
 
 @NgModule({
@@ -25,12 +27,14 @@ import { RequestProvider } from '../providers/request/request';
     AccountsPage,
     UpdateProfilePage,
     SettingsPage,
+    
     //RequestsPipe
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
     HttpModule,
+     IonicStorageModule.forRoot()
     //OnGoingRequestsPageModule,
     //RequestHistoryPageModule
   ],
@@ -50,7 +54,8 @@ import { RequestProvider } from '../providers/request/request';
     GoogleMaps,
     NativeGeocoder,
     LocalNotifications,
-    RequestProvider,
+    RequestProvider,  
+    IonicStorageModule
     //RequestsPipe
   ],
   exports:[
