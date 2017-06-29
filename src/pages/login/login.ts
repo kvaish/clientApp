@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, AlertController, LoadingController, Loading, IonicPage } from 'ionic-angular';
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
+import { Storage } from '@ionic/Storage'; 
 //import { RegisterPage } from '../register/register';
 /**
  * Generated class for the LoginPage page.
@@ -18,8 +19,11 @@ export class LoginPage {
   loading: Loading;
   email:string;
   password:string;
+  private storage:Storage;
  
-  constructor(private nav: NavController, private auth: AuthServiceProvider, private alertCtrl: AlertController, private loadingCtrl: LoadingController) { 
+  constructor(private nav: NavController, private auth: AuthServiceProvider, private alertCtrl: AlertController,
+              private loadingCtrl: LoadingController,storage:Storage) { 
+                this.storage = storage;
   }
 
   public createAccount() {
@@ -32,7 +36,11 @@ export class LoginPage {
       password:this.password
     }
     this.auth.login(user).subscribe((data)=>{
-      if(data == 'done'){
+      this.storage.set('name',data.username);
+      this.storage.get('name').then((name) => {
+      console.log('Your name is', name);
+    });
+      if(data.username != ''){
         this.showLoading();
         this.nav.setRoot('HomeTabPage');
       }
