@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
 import { LoginPage } from './login';
+import {IonicStorageModule} from '@ionic/Storage';
 
 @NgModule({
   declarations: [
@@ -13,7 +14,8 @@ import { LoginPage } from './login';
     LoginPage
   ],
   providers: [
-    LoginPage
+    LoginPage,
+    Storage
   ]
 })
 export class LoginPageModule {}

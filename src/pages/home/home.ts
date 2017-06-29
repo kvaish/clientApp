@@ -9,6 +9,7 @@ import { AccountsPage } from '../accounts/accounts';
 import { SettingsPage } from '../settings/settings';
 import { UpdateProfilePage } from '../update-profile/update-profile';
 import { NativeGeocoder, NativeGeocoderReverseResult } from '@ionic-native/native-geocoder';
+import { Storage } from '@ionic/Storage';
 
 declare var google;
 
@@ -28,8 +29,14 @@ export class HomePage {
   address: any;
   addressString: any;
   pages: Array<{title: string, component: any}>
+  private storage:Storage;
 
-  constructor(private toaster: ToastController, private geocoder: NativeGeocoder, private geolocation: Geolocation, private alertCtrl: AlertController, private splashScreen: SplashScreen, private statusBar: StatusBar, private nav: NavController, private auth: AuthServiceProvider, private menu: MenuController, private platform: Platform) {}
+  constructor(private toaster: ToastController, private geocoder: NativeGeocoder, private geolocation: Geolocation,
+              private alertCtrl: AlertController, private splashScreen: SplashScreen, private statusBar: StatusBar,
+              private nav: NavController, private auth: AuthServiceProvider, private menu: MenuController,
+              private platform: Platform,storage:Storage) {
+                this.storage  = storage;
+              }
 
   ngOnInit() {
     this.loadMap();
@@ -120,7 +127,11 @@ export class HomePage {
   }
 
   logout(){
+    this.storage.clear().then(() => {
+      console.log('Keys have been cleared');
+    });
     this.nav.setRoot('LoginPage');
+    
   }
 
   createRequest(){
