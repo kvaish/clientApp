@@ -125,6 +125,10 @@ export class HomePage {
 
   createRequest(){
     //console.log(this.address);
-    this.nav.push('CreateRequestPage',{'coordinates': this.address, 'address': this.addressString});
+    if(this.map) {
+      this.map.setClickable(false);
+      this.nav.push('CreateRequestPage',{'coordinates': this.address, 'address': this.addressString});
+    }
+    
   }
 }

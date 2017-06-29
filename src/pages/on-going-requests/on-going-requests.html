@@ -18,7 +18,7 @@
   <p>Filter According to:-</p>
   Type:&nbsp;&nbsp;&nbsp;  
   <input type="text" [(ngModel)]="type" name="type" placeholder="Type of Request"/><br><br>  
-<ion-list>
+<ion-list inset>
 <ion-grid>
   <ion-list-header>
   <ion-row >
@@ -28,7 +28,7 @@
           <ion-col col-3><ion-title>Details</ion-title></ion-col>
   </ion-row>
   </ion-list-header>
-    <ion-row *ngFor="let request of requests | requests : type " >
+    <ion-row *ngFor="let request of requests | requests : type " text-center>
     
       <ion-col col-5 text-center>{{request.reqtype }}</ion-col>
       <!--<ion-col>{{request.createdate}}</div>-->
