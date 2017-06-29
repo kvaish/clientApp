@@ -23,20 +23,76 @@
   </div>
   <ion-card>
    <form (ngSubmit)="logRequest()">
-      <ion-item>
-        <ion-label floating>Type of Request</ion-label>  
-        <ion-input type="text" required [(ngModel)]="reqtype" name="reqtype" ></ion-input>
-      </ion-item>
+      <!--<ion-item>-->
+        <!--<ion-label floating>Type of Service</ion-label>  -->
+        <!--<ion-input type="text" required [(ngModel)]="reqtype" name="reqtype" ></ion-input>-->
+        <ion-list no-lines radio-group required [(ngModel)]="servicetype" name="servicetype">
+          <ion-list-header>
+            Type of Service
+          </ion-list-header>
+          <ion-row>
+            <ion-col><ion-item>
+              <ion-label>Dry</ion-label>
+              <ion-radio checked="true" value="dry"></ion-radio>
+            </ion-item></ion-col>
+            <ion-col><ion-item>
+              <ion-label>Wet</ion-label>
+              <ion-radio value="wet"></ion-radio>
+            </ion-item></ion-col>
+          </ion-row>
+        </ion-list>
 
+
+      <!--</ion-item>-->
+      <ion-list no-lines radio-group required [(ngModel)]="actype" name="actype">
+          <ion-list-header>
+            AC
+          </ion-list-header>
+          <ion-row>
+            <ion-col><ion-item>
+              <ion-label>Split</ion-label>
+              <ion-radio checked="true" value="split"></ion-radio>
+            </ion-item></ion-col>
+            <ion-col><ion-item>
+              <ion-label>Window</ion-label>
+              <ion-radio value="Window"></ion-radio>
+            </ion-item></ion-col>
+          </ion-row>
+        </ion-list>
+        
+      <ion-item>
+        <ion-list-header>
+            Type of Service
+        </ion-list-header>
+        <ion-range min="0" max="2" step="0.5" [(ngModel)]="capacity" name="capacity" color="primary" pin="true">
+          <ion-label range-left>0</ion-label>
+          <ion-label range-right>2</ion-label>
+        </ion-range>
+      </ion-item>
       
-      <ion-item>  
+      <ion-list no-lines radio-group required [(ngModel)]="date" name="date">
+          <ion-list-header>
+            When?
+          </ion-list-header>
+          <ion-row>
+            <ion-col><ion-item>
+              <ion-label>Now</ion-label>
+              <ion-radio checked="true" value="now"></ion-radio>
+            </ion-item></ion-col>
+            <ion-col><ion-item>
+              <ion-label>Later</ion-label>
+              <ion-radio value="later" (click)="datepicker()" id="date"></ion-radio>
+            </ion-item></ion-col>
+          </ion-row>
+        </ion-list>
+      <!--<ion-item>  
         <ion-icon name="phone-portrait"></ion-icon>
         <ion-label floating>Phone Number</ion-label>
         <ion-input type="text" required [(ngModel)]="phone" name="phone" ></ion-input>
-      </ion-item>
+      </ion-item>-->
 
       <ion-item>
-        <ion-label floating>Description</ion-label>
+        <ion-label floating>Remarks</ion-label>
         <ion-textarea [(ngModel)]="reqdesc" name="reqdesc" rows="3" ></ion-textarea>
       </ion-item>
 
@@ -50,7 +106,7 @@
       </ion-item>-->
 
       <!--<button ion-button type="submit" block>Log Request</button>-->
-      <ion-fab right bottom>
+      <ion-fab right bottom padding>
         <button ion-fab type="submit"><ion-icon name="md-checkmark"></ion-icon></button>
       </ion-fab>
     </form>

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { RequestProvider } from '../../providers/request/request';
+import { DatePicker } from '@ionic-native/date-picker';
 
 /**
  * Generated class for the CreateRequestPage page.
@@ -26,7 +27,7 @@ export class CreateRequestPage {
   reqdesc:string;
   status:string;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,private requestProvider:RequestProvider) {
+  constructor(private datePicker: DatePicker, public navCtrl: NavController, public alertCtrl: AlertController, public navParams: NavParams,private requestProvider:RequestProvider) {
     console.log(this.navParams.get('coordinates'));
   }
 
@@ -55,4 +56,19 @@ export class CreateRequestPage {
       console.log(request);
     });
   }
+
+  datepicker(){
+    this.datePicker.show({
+      date: new Date(),
+      mode: 'date',
+      androidTheme: this.datePicker.ANDROID_THEMES.THEME_HOLO_DARK
+    }).then(
+      date => { 
+        let input:any = document.getElementById("date") as HTMLInputElement;
+        input.value = date;
+      },
+      err => console.log('Error occurred while getting date: ', err)
+    );
+  }
+  
 }
