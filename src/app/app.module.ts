@@ -7,6 +7,7 @@ import { Geolocation } from '@ionic-native/geolocation';
 import { GoogleMaps} from '@ionic-native/google-maps';
 import { NativeGeocoder } from '@ionic-native/native-geocoder';
 import { LocalNotifications } from '@ionic-native/local-notifications';
+import { DatePicker } from '@ionic-native/date-picker';
 
 import { MyApp } from './app.component';
 //import { OnGoingRequestsPageModule } from '../pages/on-going-requests/on-going-requests.module';
@@ -33,8 +34,10 @@ import {Storage} from '@ionic/Storage';
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
+
     HttpModule,
      IonicStorageModule.forRoot()
+
     //OnGoingRequestsPageModule,
     //RequestHistoryPageModule
   ],
@@ -54,8 +57,13 @@ import {Storage} from '@ionic/Storage';
     GoogleMaps,
     NativeGeocoder,
     LocalNotifications,
-    RequestProvider,  
+
+    RequestProvider,
+    DatePicker,
+
+    
     IonicStorageModule
+
     //RequestsPipe
   ],
   exports:[

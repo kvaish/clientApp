@@ -45,12 +45,9 @@ export class OnGoingRequestsPage {
       title:'Type: '+request.reqtype+ '<br><br>',
       subTitle:'<b>' + 'Description: ' +'</b>' + request.reqdesc + '<br><br>' + 
                 '<b>' + 'Create Date: ' + '</b>' + request.createdate + '<br><br>' +
-                '<b>' + 'Status: ' + '</b>' + request.status,
+                '<b>' + 'Status: ' + '</b>' + request.status + '<br><br>'+
+                '<b>' + 'Date of Service: ' + '</b>' + request.date,
       buttons:[
-        {
-          text:'OK',
-          role: 'cancel'
-        },
         {
           text:'Delete',
           handler:()=>{
@@ -78,6 +75,10 @@ export class OnGoingRequestsPage {
             });
             alert2.present();
           }
+        },
+        {
+          text:'OK',
+          role: 'cancel'
         }
       ]
     });
