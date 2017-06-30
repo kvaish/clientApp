@@ -18,6 +18,9 @@ import { UpdateProfilePage } from '../pages/update-profile/update-profile';
 import { AccountsPage } from '../pages/accounts/accounts';
 import { HttpModule} from '@angular/http';
 import { RequestProvider } from '../providers/request/request';
+
+import { HomePageModule } from '../pages/home/home.module';
+
 //import { RequestsPipe } from '../pipes/requests/requests';
 
 @NgModule({
@@ -26,12 +29,14 @@ import { RequestProvider } from '../providers/request/request';
     AccountsPage,
     UpdateProfilePage,
     SettingsPage,
+    //AutocompletePage
     //RequestsPipe
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
-    HttpModule
+    HttpModule,
+    HomePageModule
     //OnGoingRequestsPageModule,
     //RequestHistoryPageModule
   ],
@@ -40,7 +45,8 @@ import { RequestProvider } from '../providers/request/request';
     MyApp,
     AccountsPage,
     UpdateProfilePage,
-    SettingsPage
+    SettingsPage,
+    //AutocompletePage
   ],
   providers: [
     StatusBar,

@@ -26,7 +26,7 @@ export class CreateRequestPage {
   phone:number;
   reqdesc:string;
   status:string;
-
+  date: any;
   constructor(private datePicker: DatePicker, public navCtrl: NavController, public alertCtrl: AlertController, public navParams: NavParams,private requestProvider:RequestProvider) {
     console.log(this.navParams.get('coordinates'));
   }
@@ -42,7 +42,8 @@ export class CreateRequestPage {
       reqdesc:this.reqdesc,
       status:this.status,
       location: this.navParams.get('coordinates'),
-      address: this.navParams.get('address')
+      address: this.navParams.get('address'),
+      date: this.date
     }
     console.log(newRequest);
       this.requestProvider.logRequest(newRequest).subscribe((request)=>{
@@ -64,8 +65,10 @@ export class CreateRequestPage {
       androidTheme: this.datePicker.ANDROID_THEMES.THEME_HOLO_DARK
     }).then(
       date => { 
-        let input:any = document.getElementById("date") as HTMLInputElement;
-        input.value = date;
+        //let input:any = document.getElementById("date") as HTMLInputElement;
+        //input.value = date;
+        this.date = date;
+        alert(this.date);
       },
       err => console.log('Error occurred while getting date: ', err)
     );
