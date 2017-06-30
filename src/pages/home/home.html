@@ -45,7 +45,8 @@
  
 <ion-content class="home">
   <ion-item>
-    <ion-input [(ngModel)]="displayAddress" id="displayAdress" type="text" value="" placeholder="Enter Address"></ion-input>
+    <!--//<ion-input [(ngModel)]="displayAddress" id="displayAdress" type="text" value="" placeholder="Enter Address"></ion-input>-->
+    <ion-input (focus)="showAddressModal()" [(ngModel)]="places.place" type="text" placeholder="Enter Address"></ion-input>
   </ion-item>
  
     

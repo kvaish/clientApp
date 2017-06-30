@@ -17,9 +17,16 @@ import { AuthServiceProvider } from '../providers/auth-service/auth-service';
 import { UpdateProfilePage } from '../pages/update-profile/update-profile';
 import { AccountsPage } from '../pages/accounts/accounts';
 import { HttpModule} from '@angular/http';
+
 import { RequestProvider } from '../providers/request/request'; 
 import {IonicStorageModule} from '@ionic/Storage';
 import {Storage} from '@ionic/Storage';
+
+import { RequestProvider } from '../providers/request/request';
+
+import { HomePageModule } from '../pages/home/home.module';
+
+
 //import { RequestsPipe } from '../pipes/requests/requests';
 
 @NgModule({
@@ -28,15 +35,21 @@ import {Storage} from '@ionic/Storage';
     AccountsPage,
     UpdateProfilePage,
     SettingsPage,
-    
+
+    //AutocompletePage
+
     //RequestsPipe
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
 
+
     HttpModule,
      IonicStorageModule.forRoot()
+
+  
+    HomePageModule
 
     //OnGoingRequestsPageModule,
     //RequestHistoryPageModule
@@ -46,7 +59,8 @@ import {Storage} from '@ionic/Storage';
     MyApp,
     AccountsPage,
     UpdateProfilePage,
-    SettingsPage
+    SettingsPage,
+    //AutocompletePage
   ],
   providers: [
     StatusBar,

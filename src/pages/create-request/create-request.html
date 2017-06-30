@@ -81,7 +81,7 @@
             </ion-item></ion-col>
             <ion-col><ion-item>
               <ion-label>Later</ion-label>
-              <ion-radio value="later" (click)="datepicker()" id="date"></ion-radio>
+              <ion-radio [(ngModel)]="date" value="later" (click)="datepicker()" id="date" name="date"></ion-radio>
             </ion-item></ion-col>
           </ion-row>
         </ion-list>

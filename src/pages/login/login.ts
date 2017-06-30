@@ -36,9 +36,13 @@ export class LoginPage {
       password:this.password
     }
     this.auth.login(user).subscribe((data)=>{
+
      console.log(data);
      this.storage.set('name',data.username);
       if(data.username){
+
+      if(data != 'err'){
+
         this.showLoading();
         this.nav.setRoot('HomeTabPage');
       }
