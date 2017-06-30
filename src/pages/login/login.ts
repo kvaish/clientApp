@@ -32,7 +32,7 @@ export class LoginPage {
       password:this.password
     }
     this.auth.login(user).subscribe((data)=>{
-      if(data == 'done'){
+      if(data != 'err'){
         this.showLoading();
         this.nav.setRoot('HomeTabPage');
       }
