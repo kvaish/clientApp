@@ -36,11 +36,9 @@ export class LoginPage {
       password:this.password
     }
     this.auth.login(user).subscribe((data)=>{
-      this.storage.set('name',data.username);
-      this.storage.get('name').then((name) => {
-      console.log('Your name is', name);
-    });
-      if(data.username != ''){
+     console.log(data);
+     this.storage.set('name',data.username);
+      if(data.username){
         this.showLoading();
         this.nav.setRoot('HomeTabPage');
       }
@@ -59,11 +57,11 @@ export class LoginPage {
   }
  
   showError(text) {
-    this.loading.dismiss();
+    
  
     let alert = this.alertCtrl.create({
-      title: 'Fail',
-      subTitle: text,
+      title: '<b>' +'Bummer!!' + '<b>' + '<br>',
+      subTitle: 'Incorrect Username and Password.' + '<br>'+ 'Click '  + '<b>' + 'OK' + '</b>'+ ' to go back to the Login Page.' ,
       buttons: ['OK']
     });
     alert.present(prompt);

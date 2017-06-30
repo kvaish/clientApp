@@ -2,4 +2,21 @@ page-on-going-requests {
     ion-row{
         justify-content: center !important;
     }
+    .card{
+        box-shadow: 0 10px 10px 0 gray;
+    }
+    .card-header{
+        background-color: #1fb5bf;
+        padding: 12px;
+    }
+    .item-button{
+        padding: 15px 10px 15px 10px !important;
+        float:right;
+    }
+    .details-header{
+        font-size:20px;
+        color: white;
+        text-align: center;
+        font-weight: bold;
+    }
 }

@@ -59,7 +59,7 @@ import {Storage} from '@ionic/Storage';
     LocalNotifications,
 
     RequestProvider,
-    DatePicker
+    DatePicker,
 
     
     IonicStorageModule

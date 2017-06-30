@@ -15,15 +15,20 @@
 
 <ion-content padding>
   <h1>List of All the requests</h1> 
-  <p>Filter According to:-</p>
-  Type:&nbsp;&nbsp;&nbsp;  
-  <input type="text" [(ngModel)]="type" name="type" placeholder="Type of Request"/><br><br>  
-<ion-list inset>
+  <h4>Filter According to:-</h4>  
+  <ion-item>
+    <ion-label>Type Of Request</ion-label>
+    <ion-select [(ngModel)]="type" name="type" >
+      <ion-option>Dry</ion-option>
+      <ion-option>Wet</ion-option>
+    </ion-select>
+  </ion-item><br><br>
+<!--<ion-list inset>
 <ion-grid>
   <ion-list-header>
   <ion-row >
           <ion-col col-5><ion-title>Request Type</ion-title></ion-col>
-          <!--<ion-col><ion-title>Creation Date</div>-->
+          <ion-col><ion-title>Creation Date</div>
           <ion-col col-4><ion-title>Status</ion-title></ion-col>
           <ion-col col-3><ion-title>Details</ion-title></ion-col>
   </ion-row>
@@ -31,17 +36,27 @@
     <ion-row *ngFor="let request of requests | requests : type " text-center>
     
       <ion-col col-5 text-center>{{request.reqtype }}</ion-col>
-      <!--<ion-col>{{request.createdate}}</div>-->
+      <!--<ion-col>{{request.createdate}}</div>
       <ion-col col-4 text-center>{{request.status}}</ion-col>
       <ion-col col-3 text-center>
         <button ion-button icon-only clear (click)="showRequestDetails(request)">
           <ion-icon name="md-more"></ion-icon>
         </button>
-        <!--<button ion-button (click)="editRequest(request)">Edit</button>-->
+        <!--<button ion-button (click)="editRequest(request)">Edit</button>
         
       </ion-col>
     </ion-row>
   
 </ion-grid>
-</ion-list>
+</ion-list>-->
+<ion-card *ngFor="let request of requests | requests : type " class="card">
+  <header class="card-header">
+    <p class="details-header">Request Type:{{request.reqtype }}</p>
+  </header>
+  <ion-item>
+    
+    <h1>Create Date</h1><p>{{request.createdate}}</p>
+    <button ion-button (click)="showRequestDetails(request)">Details</button>
+  </ion-item>
+</ion-card>
 </ion-content>

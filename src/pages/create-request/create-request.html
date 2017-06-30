@@ -26,18 +26,18 @@
       <!--<ion-item>-->
         <!--<ion-label floating>Type of Service</ion-label>  -->
         <!--<ion-input type="text" required [(ngModel)]="reqtype" name="reqtype" ></ion-input>-->
-        <ion-list no-lines radio-group required [(ngModel)]="servicetype" name="servicetype">
+        <ion-list no-lines radio-group required [(ngModel)]="reqtype" name="reqtype">
           <ion-list-header>
             Type of Service
           </ion-list-header>
           <ion-row>
             <ion-col><ion-item>
               <ion-label>Dry</ion-label>
-              <ion-radio checked="true" value="dry"></ion-radio>
+              <ion-radio checked="true" value="Dry"></ion-radio>
             </ion-item></ion-col>
             <ion-col><ion-item>
               <ion-label>Wet</ion-label>
-              <ion-radio value="wet"></ion-radio>
+              <ion-radio value="Wet"></ion-radio>
             </ion-item></ion-col>
           </ion-row>
         </ion-list>
@@ -51,7 +51,7 @@
           <ion-row>
             <ion-col><ion-item>
               <ion-label>Split</ion-label>
-              <ion-radio checked="true" value="split"></ion-radio>
+              <ion-radio checked="true" value="Split"></ion-radio>
             </ion-item></ion-col>
             <ion-col><ion-item>
               <ion-label>Window</ion-label>

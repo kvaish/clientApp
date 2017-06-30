@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { RequestProvider } from '../../providers/request/request';
 import { DatePicker } from '@ionic-native/date-picker';
+import {Storage} from '@ionic/Storage';
 
 /**
  * Generated class for the CreateRequestPage page.
@@ -15,19 +16,28 @@ import { DatePicker } from '@ionic-native/date-picker';
   templateUrl: 'create-request.html',
 })
 export class CreateRequestPage {
-
+  storage:Storage;
   request:{
     reqtype:string,
-    phone:number,
+    actype:string,
     reqdesc:string,
-    status:string
+    capacity:string,
+    date:string,
+    clientid:string
   }
-  reqtype:string;
-  phone:number;
-  reqdesc:string;
-  status:string;
+    reqtype:string;
+    actype:string;
+    reqdesc:string;
+    capacity:string;
+    date:string;
+    clientid:string;
 
-  constructor(private datePicker: DatePicker, public navCtrl: NavController, public alertCtrl: AlertController, public navParams: NavParams,private requestProvider:RequestProvider) {
+  constructor(private datePicker: DatePicker, public navCtrl: NavController, public alertCtrl: AlertController,
+              public navParams: NavParams,private requestProvider:RequestProvider,storage:Storage) {
+                this.storage = storage;
+                this.storage.get('name').then(name=>{
+                  this.clientid = name;
+                });
     console.log(this.navParams.get('coordinates'));
   }
 
@@ -38,11 +48,13 @@ export class CreateRequestPage {
   logRequest(){
     const newRequest={
       reqtype:this.reqtype,
-      phone:this.phone,
+      actype:this.actype,
       reqdesc:this.reqdesc,
-      status:this.status,
+      capacity:this.capacity,
+      date:this.date,
       location: this.navParams.get('coordinates'),
-      address: this.navParams.get('address')
+      address: this.navParams.get('address'),
+      clientid:this.clientid
     }
     console.log(newRequest);
       this.requestProvider.logRequest(newRequest).subscribe((request)=>{
