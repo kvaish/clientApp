@@ -10,7 +10,7 @@ import { Storage } from '@ionic/Storage';
   templateUrl: 'app.html'
 })
 export class MyApp {
-  rootPage:any = 'LoginPage';
+  rootPage:any;
   private storage:Storage;
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen,storage:Storage) {

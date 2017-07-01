@@ -30,21 +30,24 @@ export class CreateRequestPage {
     actype:string;
     reqdesc:string;
     capacity:string;
-    date:string;
     clientid:string;
+    date:any;
 
   constructor(private datePicker: DatePicker, public navCtrl: NavController, public alertCtrl: AlertController,
               public navParams: NavParams,private requestProvider:RequestProvider,storage:Storage) {
                 this.storage = storage;
                 this.storage.get('name').then(name=>{
                   this.clientid = name;
+                  
                 });
 
     console.log(this.navParams.get('coordinates'));
   }
 
   ionViewDidLoad() {
+
     console.log('ionViewDidLoad RequestPage');
+
   }
 
   logRequest(){
@@ -53,18 +56,15 @@ export class CreateRequestPage {
       actype:this.actype,
       reqdesc:this.reqdesc,
       capacity:this.capacity,
-      date:this.date,
       location: this.navParams.get('coordinates'),
       address: this.navParams.get('address'),
-
-      clientid:this.clientid
-
+      clientid:this.clientid,
       date: this.date
 
     }
     console.log(newRequest);
       this.requestProvider.logRequest(newRequest).subscribe((request)=>{
-      if(request == 'done'){
+      if(request == "done"){
         this.requestProvider.showPopup('Success', 'Request Logged Successfully!');
         this.navCtrl.setRoot('OnGoingRequestsPage');
       }
@@ -85,7 +85,7 @@ export class CreateRequestPage {
         //let input:any = document.getElementById("date") as HTMLInputElement;
         //input.value = date;
         this.date = date;
-        alert(this.date);
+        
       },
       err => console.log('Error occurred while getting date: ', err)
     );

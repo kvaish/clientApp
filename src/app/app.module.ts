@@ -17,13 +17,9 @@ import { AuthServiceProvider } from '../providers/auth-service/auth-service';
 import { UpdateProfilePage } from '../pages/update-profile/update-profile';
 import { AccountsPage } from '../pages/accounts/accounts';
 import { HttpModule} from '@angular/http';
-
-import { RequestProvider } from '../providers/request/request'; 
 import {IonicStorageModule} from '@ionic/Storage';
 import {Storage} from '@ionic/Storage';
-
 import { RequestProvider } from '../providers/request/request';
-
 import { HomePageModule } from '../pages/home/home.module';
 
 
@@ -43,14 +39,9 @@ import { HomePageModule } from '../pages/home/home.module';
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
-
-
     HttpModule,
-     IonicStorageModule.forRoot()
-
-  
+    IonicStorageModule.forRoot(),
     HomePageModule
-
     //OnGoingRequestsPageModule,
     //RequestHistoryPageModule
   ],

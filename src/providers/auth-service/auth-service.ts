@@ -15,7 +15,7 @@ import 'rxjs/add/operator/map';
 export class AuthServiceProvider {
 
   constructor(public http: Http, private alertCtrl: AlertController) {
-    console.log('Hello RequestProvider Provider');
+    
   }
 
   register(newUser){

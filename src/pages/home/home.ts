@@ -8,10 +8,7 @@ import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 import { AccountsPage } from '../accounts/accounts';
 import { SettingsPage } from '../settings/settings';
 import { UpdateProfilePage } from '../update-profile/update-profile';
-
-import { NativeGeocoder, NativeGeocoderReverseResult } from '@ionic-native/native-geocoder';
 import { Storage } from '@ionic/Storage';
-
 import { NativeGeocoder, NativeGeocoderReverseResult,NativeGeocoderForwardResult } from '@ionic-native/native-geocoder';
 import { AutocompletePage } from '../autocomplete/autocomplete';
 
@@ -41,7 +38,7 @@ export class HomePage {
   constructor(private toaster: ToastController, private geocoder: NativeGeocoder, private geolocation: Geolocation,
               private alertCtrl: AlertController, private splashScreen: SplashScreen, private statusBar: StatusBar,
               private nav: NavController, private auth: AuthServiceProvider, private menu: MenuController,
-              private platform: Platform,storage:Storage) {
+              private platform: Platform,storage:Storage,private modalCtrl:ModalController,) {
                 this.storage  = storage;
               }
 
@@ -49,7 +46,7 @@ export class HomePage {
       place: ''
     };
   marker: Marker;
-  constructor( private modalCtrl:ModalController, private toaster: ToastController, private geocoder: NativeGeocoder, private geolocation: Geolocation, private alertCtrl: AlertController, private splashScreen: SplashScreen, private statusBar: StatusBar, private nav: NavController, private auth: AuthServiceProvider, private menu: MenuController, private platform: Platform) {}
+  
 
 
   ngOnInit() {

@@ -15,14 +15,18 @@
 
 <ion-content padding>
   <h1>List of All the requests</h1> 
-  <h4>Filter According to:-</h4>  
+  <h4>Filter According to:- </h4> <button *ngIf="type != ''" ion-button style="float: right;" (click)="refresh()">Clear Filters</button> 
   <ion-item>
     <ion-label>Type Of Request</ion-label>
     <ion-select [(ngModel)]="type" name="type" >
       <ion-option>Dry</ion-option>
       <ion-option>Wet</ion-option>
+      <button ion-button>Clear Filters</button>
     </ion-select>
-  </ion-item><br><br>
+  </ion-item><br>
+  
+    
+
 <!--<ion-list inset>
 <ion-grid>
   <ion-list-header>

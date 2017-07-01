@@ -1,14 +1,14 @@
 webpackJsonp([8],{
 
-/***/ 283:
+/***/ 280:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(23);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__settings__ = __webpack_require__(202);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SettingsPageModule", function() { return SettingsPageModule; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__autocomplete__ = __webpack_require__(106);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AutocompletePageModule", function() { return AutocompletePageModule; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -18,26 +18,32 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-var SettingsPageModule = (function () {
-    function SettingsPageModule() {
+var AutocompletePageModule = (function () {
+    function AutocompletePageModule() {
     }
-    return SettingsPageModule;
+    return AutocompletePageModule;
 }());
-SettingsPageModule = __decorate([
+AutocompletePageModule = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["a" /* NgModule */])({
         declarations: [
-            __WEBPACK_IMPORTED_MODULE_2__settings__["a" /* SettingsPage */],
+            __WEBPACK_IMPORTED_MODULE_2__autocomplete__["a" /* AutocompletePage */],
         ],
         imports: [
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__settings__["a" /* SettingsPage */]),
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__autocomplete__["a" /* AutocompletePage */]),
         ],
         exports: [
-            __WEBPACK_IMPORTED_MODULE_2__settings__["a" /* SettingsPage */]
+            __WEBPACK_IMPORTED_MODULE_2__autocomplete__["a" /* AutocompletePage */]
+        ],
+        providers: [
+            __WEBPACK_IMPORTED_MODULE_2__autocomplete__["a" /* AutocompletePage */]
+        ],
+        entryComponents: [
+            __WEBPACK_IMPORTED_MODULE_2__autocomplete__["a" /* AutocompletePage */]
         ]
     })
-], SettingsPageModule);
+], AutocompletePageModule);
 
-//# sourceMappingURL=settings.module.js.map
+//# sourceMappingURL=autocomplete.module.js.map
 
 /***/ })
 

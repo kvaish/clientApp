@@ -10,7 +10,7 @@ page-on-going-requests {
         padding: 12px;
     }
     .item-button{
-        padding: 15px 10px 15px 10px !important;
+        padding: 20px 10px 20px 10px !important;
         float:right;
     }
     .details-header{
@@ -18,5 +18,11 @@ page-on-going-requests {
         color: white;
         text-align: center;
         font-weight: bold;
+    }
+    .alert-head {
+    background-color: black !important;
+    }
+    .request-title{
+        background-color: blue !important;
     }
 }

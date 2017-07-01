@@ -41,15 +41,23 @@ export class LoginPage {
      this.storage.set('name',data.username);
       if(data.username){
 
-      if(data != 'err'){
+        if(data != 'err'){
 
-        this.showLoading();
-        this.nav.setRoot('HomeTabPage');
-      }
-      else{
-        this.showError('Failed');
-      }
-    },(err)=>console.log(err));
+          this.showLoading();
+          this.nav.setRoot('HomeTabPage');
+        }
+        else if (data == 'false'){
+          this.showError('Failed');
+        }
+     }
+     else if(!data.username){
+
+       var username = data.toString();
+       if (username == 'false'){
+          this.showError('Failed');
+        }
+     }
+    });
   }
  
   showLoading() {
