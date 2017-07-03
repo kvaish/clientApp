@@ -19,22 +19,22 @@ export class RequestProvider {
   logRequest(newRequest){
     var headers = new Headers();
   	headers.append('Content-Type','application/json');
-    return this.http.post('http://localhost:3000/request',newRequest,{headers:headers}).map(res=>res.json());
+    return this.http.post('http://10.100.1.4:3000/request',newRequest,{headers:headers}).map(res=>res.json());
   }
 
   getRequests(status){
     console.log(status);
-    return this.http.get('http://localhost:3000/getRequests/'+status).map(res=>res.json());
+    return this.http.get('http://10.100.1.4:3000/getRequests/'+status).map(res=>res.json());
   }
 
   deleteRequest(id:any){
-    return this.http.delete('http://localhost:3000/deleteRequest/'+id).map(res=>res.json());
+    return this.http.delete('http://10.100.1.4:3000/deleteRequest/'+id).map(res=>res.json());
   }
 
   updateRequest(saveRequest){
     var headers = new Headers();
     headers.append('Content-Type','application/json');
-    return this.http.put('http://localhost:3000/updateRequest',saveRequest,{headers:headers}).map(res=>res.json());
+    return this.http.put('http://10.100.1.4:3000/updateRequest',saveRequest,{headers:headers}).map(res=>res.json());
   }
   
   showPopup(title, text) {

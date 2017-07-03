@@ -35,19 +35,18 @@ export class LoginPage {
       email:this.email,
       password:this.password
     }
-    this.auth.login(user).subscribe((data)=>{
-
+  this.auth.login(user).subscribe((data)=>{
      console.log(data);
-     this.storage.set('name',data.username);
+    this.storage.set('name',data.username);
       if(data.username){
+        if(data != 'err'){
 
-      if(data != 'err'){
-
-        this.showLoading();
-        this.nav.setRoot('HomeTabPage');
-      }
-      else{
-        this.showError('Failed');
+          this.showLoading();
+          this.nav.setRoot('HomeTabPage');
+        }
+        else{
+          this.showError('Failed');
+        }
       }
     },(err)=>console.log(err));
   }

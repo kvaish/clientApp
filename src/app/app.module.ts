@@ -7,6 +7,8 @@ import { Geolocation } from '@ionic-native/geolocation';
 import { GoogleMaps} from '@ionic-native/google-maps';
 import { NativeGeocoder } from '@ionic-native/native-geocoder';
 import { LocalNotifications } from '@ionic-native/local-notifications';
+import { LocationAccuracy } from '@ionic-native/location-accuracy';
+import { Diagnostic } from '@ionic-native/diagnostic';
 import { DatePicker } from '@ionic-native/date-picker';
 
 import { MyApp } from './app.component';
@@ -17,13 +19,9 @@ import { AuthServiceProvider } from '../providers/auth-service/auth-service';
 import { UpdateProfilePage } from '../pages/update-profile/update-profile';
 import { AccountsPage } from '../pages/accounts/accounts';
 import { HttpModule} from '@angular/http';
-
 import { RequestProvider } from '../providers/request/request'; 
 import {IonicStorageModule} from '@ionic/Storage';
 import {Storage} from '@ionic/Storage';
-
-import { RequestProvider } from '../providers/request/request';
-
 import { HomePageModule } from '../pages/home/home.module';
 
 
@@ -43,12 +41,8 @@ import { HomePageModule } from '../pages/home/home.module';
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
-
-
     HttpModule,
-     IonicStorageModule.forRoot()
-
-  
+    IonicStorageModule.forRoot(),
     HomePageModule
 
     //OnGoingRequestsPageModule,
@@ -71,12 +65,11 @@ import { HomePageModule } from '../pages/home/home.module';
     GoogleMaps,
     NativeGeocoder,
     LocalNotifications,
-
     RequestProvider,
     DatePicker,
-
-    
-    IonicStorageModule
+    LocationAccuracy,   
+    IonicStorageModule,
+    Diagnostic
 
     //RequestsPipe
   ],

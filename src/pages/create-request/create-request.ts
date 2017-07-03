@@ -30,7 +30,7 @@ export class CreateRequestPage {
     actype:string;
     reqdesc:string;
     capacity:string;
-    date:string;
+    date:any;
     clientid:string;
 
   constructor(private datePicker: DatePicker, public navCtrl: NavController, public alertCtrl: AlertController,
@@ -58,9 +58,6 @@ export class CreateRequestPage {
       address: this.navParams.get('address'),
 
       clientid:this.clientid
-
-      date: this.date
-
     }
     console.log(newRequest);
       this.requestProvider.logRequest(newRequest).subscribe((request)=>{

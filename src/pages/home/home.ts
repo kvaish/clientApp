@@ -8,12 +8,12 @@ import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 import { AccountsPage } from '../accounts/accounts';
 import { SettingsPage } from '../settings/settings';
 import { UpdateProfilePage } from '../update-profile/update-profile';
-
-import { NativeGeocoder, NativeGeocoderReverseResult } from '@ionic-native/native-geocoder';
 import { Storage } from '@ionic/Storage';
-
+import { Diagnostic } from '@ionic-native/diagnostic';
 import { NativeGeocoder, NativeGeocoderReverseResult,NativeGeocoderForwardResult } from '@ionic-native/native-geocoder';
 import { AutocompletePage } from '../autocomplete/autocomplete';
+import { LocationAccuracy } from '@ionic-native/location-accuracy';
+
 
 
 @IonicPage() 
@@ -35,24 +35,35 @@ export class HomePage {
   address: any;
   // addressString: any;
   pages: Array<{title: string, component: any}>
-
-  private storage:Storage;
-
-  constructor(private toaster: ToastController, private geocoder: NativeGeocoder, private geolocation: Geolocation,
-              private alertCtrl: AlertController, private splashScreen: SplashScreen, private statusBar: StatusBar,
-              private nav: NavController, private auth: AuthServiceProvider, private menu: MenuController,
-              private platform: Platform,storage:Storage) {
-                this.storage  = storage;
-              }
-
   places = {
       place: ''
     };
   marker: Marker;
-  constructor( private modalCtrl:ModalController, private toaster: ToastController, private geocoder: NativeGeocoder, private geolocation: Geolocation, private alertCtrl: AlertController, private splashScreen: SplashScreen, private statusBar: StatusBar, private nav: NavController, private auth: AuthServiceProvider, private menu: MenuController, private platform: Platform) {}
+  constructor( private diagnostic: Diagnostic, private locationAccuracy: LocationAccuracy, private storage:Storage, private modalCtrl:ModalController, private toaster: ToastController, private geocoder: NativeGeocoder, private geolocation: Geolocation, private alertCtrl: AlertController, private splashScreen: SplashScreen, private statusBar: StatusBar, private nav: NavController, private auth: AuthServiceProvider, private menu: MenuController, private platform: Platform) {}
 
 
   ngOnInit() {
+    this.locationAccuracy.canRequest().then((canRequest: boolean) => {
+      if(canRequest){
+        this.locationAccuracy.request(this.locationAccuracy.REQUEST_PRIORITY_HIGH_ACCURACY).then(
+             () => {
+               alert('Request successful');
+               
+            },
+        error =>{
+            console.error("Request failed");
+            if(error){
+                // Android only
+                console.error("error code="+error.code+"; error message="+error.message);
+                if(error.code !== this.locationAccuracy.ERROR_USER_DISAGREED){
+                    if(window.confirm("Failed to automatically set Location Mode to 'High Accuracy'. Would you like to switch to the Location Settings page and do this manually?")){
+                        this.diagnostic.switchToLocationSettings();
+                    }
+                }
+            }
+        });
+      }
+    });
     this.loadMap();
     this.pages = [
         { title: 'Update Profile', component: UpdateProfilePage },
@@ -79,6 +90,7 @@ export class HomePage {
         this.map = new GoogleMap('map', {
           'center': location,
           'backgroundColor': 'white',
+          'disableDefaultUI': true,
           'controls': {
             'compass': true,
             'myLocationButton': true,
@@ -92,40 +104,43 @@ export class HomePage {
         });
         //this.map.setClickable(false);
         this.map.on(GoogleMapsEvent.MAP_READY).subscribe(() => {
-          // let markerOptions: MarkerOptions = {
-          //     position: location,
-          //     draggable: true,
-          //     animation: GoogleMapsAnimation.DROP,
-          //     icon: 'assets/icon/marker.png'
-          // };
-          this.marker = new Marker({
-            map : this.map,
-            position: location,
-            icon: '../../assets/images/icon-green.png',
-            animation: GoogleMapsAnimation.DROP,
-            draggable: true
-          });
+          let markerOptions: MarkerOptions = {
+              position: location,
+              draggable: true,
+              animation: GoogleMapsAnimation.DROP,
+              icon: 'file:///android_asset/www/assets/images/icon-green.png',
+          };
+          // this.marker = new Marker({
+          //   map : this.map,
+          //   position: location,
+          //   //icon: '../../assets/images/icon-green.png',
+          //   animation: GoogleMapsAnimation.DROP,
+          //   draggable: true
+          // });
           
-          this.marker.setVisible(true);
-          this.geocoder.reverseGeocode(position.coords.latitude, position.coords.longitude).then((res: NativeGeocoderReverseResult) => {
-            //let input= document.getElementById("address") as HTMLInputElement;
-            let msg = res.houseNumber+', '+ res.street+', '+ res.city+', '+ res.district+', '+ res.countryName;
-            this.places.place = msg;
-            //this.addressString = msg;
-          });
-          this.marker.addEventListener(GoogleMapsEvent.MARKER_DRAG_END).subscribe(
-            data => {
-              this.marker.getPosition().then((LatLng) => {
-                //alert(JSON.stringify(LatLng));
-                this.address = LatLng;
-                this.geocoder.reverseGeocode(LatLng.lat, LatLng.lng).then((res: NativeGeocoderReverseResult) => {
-                //let input= document.getElementById("displayAddress") as HTMLInputElement;
-                let msg = res.houseNumber+', '+ res.street+', '+ res.city+', '+ res.district+', '+ res.countryName;
-                //input.value = msg;
-                this.places.place = msg;
-                alert(msg);
+          //this.marker.setVisible(true);
+          this.map.addMarker(markerOptions).then((marker: Marker) => {
+            this.marker = marker;
+            this.geocoder.reverseGeocode(position.coords.latitude, position.coords.longitude).then((res: NativeGeocoderReverseResult) => {
+              //let input= document.getElementById("address") as HTMLInputElement;
+              let msg = res.houseNumber+', '+ res.street+', '+ res.city+', '+ res.district+', '+ res.countryName;
+              this.places.place = msg;
+              //this.addressString = msg;
+            });
+            marker.addEventListener(GoogleMapsEvent.MARKER_DRAG_END).subscribe(
+              data => {
+                marker.getPosition().then((LatLng) => {
+                  //alert(JSON.stringify(LatLng));
+                  this.address = LatLng;
+                  this.geocoder.reverseGeocode(LatLng.lat, LatLng.lng).then((res: NativeGeocoderReverseResult) => {
+                  //let input= document.getElementById("displayAddress") as HTMLInputElement;
+                  let msg = res.houseNumber+', '+ res.street+', '+ res.city+', '+ res.district+', '+ res.countryName;
+                  //input.value = msg;
+                  this.places.place = msg;
+                  alert(msg);
+                });
               });
-             });
+            });
           });
         });
     }, (err) => {
@@ -163,12 +178,13 @@ export class HomePage {
 
   showAddressModal () {
     //alert('called');
-    //this.map.setClickable(false);
+    this.map.setClickable(false);
     let modal = this.modalCtrl.create(AutocompletePage);
-    let me = this;
+    //let me = this;
     modal.onDidDismiss(data => {
       this.places.place = data;
       this.getGeocode(this.places.place);
+      this.map.setClickable(true);
     });
     
     modal.present();
