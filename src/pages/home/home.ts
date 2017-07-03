@@ -1,5 +1,5 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
-import { NavController,IonicPage,MenuController, Platform, Nav, AlertController, ToastController,ModalController } from 'ionic-angular';
+import { NavController,IonicPage,MenuController, ViewController, Platform, Nav, AlertController, ToastController,ModalController } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { Geolocation } from '@ionic-native/geolocation';
@@ -29,6 +29,7 @@ export class HomePage {
 
   @ViewChild(Nav) navMenu: Nav;
   @ViewChild('map') mapElement: ElementRef;
+  onGoingRequestsRoot = 'OnGoingRequestsPage'
   map: GoogleMap;
   username = '';
   email = '';
@@ -39,7 +40,7 @@ export class HomePage {
       place: ''
     };
   marker: Marker;
-  constructor( private diagnostic: Diagnostic, private locationAccuracy: LocationAccuracy, private storage:Storage, private modalCtrl:ModalController, private toaster: ToastController, private geocoder: NativeGeocoder, private geolocation: Geolocation, private alertCtrl: AlertController, private splashScreen: SplashScreen, private statusBar: StatusBar, private nav: NavController, private auth: AuthServiceProvider, private menu: MenuController, private platform: Platform) {}
+  constructor( private viewCtrl: ViewController, private diagnostic: Diagnostic, private locationAccuracy: LocationAccuracy, private storage:Storage, private modalCtrl:ModalController, private toaster: ToastController, private geocoder: NativeGeocoder, private geolocation: Geolocation, private alertCtrl: AlertController, private splashScreen: SplashScreen, private statusBar: StatusBar, private nav: NavController, private auth: AuthServiceProvider, private menu: MenuController, private platform: Platform) {}
 
 
   ngOnInit() {
@@ -165,7 +166,7 @@ export class HomePage {
     this.storage.clear().then(() => {
       console.log('Keys have been cleared');
     });
-    this.nav.setRoot('LoginPage');
+    this.nav.parent.parent.setRoot('LoginPage');
     
   }
 

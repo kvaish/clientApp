@@ -78,7 +78,7 @@ export class OnGoingRequestsPage {
                       var index = this.requests.indexOf(request,0);
                       if(index > -1){
                         this.requests.splice(index,-1);
-                        this.ionViewDidLoad();
+                        this.navCtrl.setRoot(this.navCtrl.getActive().component);
                       }
                     });
                   }

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
+import { App ,IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { RequestProvider } from '../../providers/request/request';
 import { DatePicker } from '@ionic-native/date-picker';
 import {Storage} from '@ionic/Storage';
@@ -33,7 +33,7 @@ export class CreateRequestPage {
     date:any;
     clientid:string;
 
-  constructor(private datePicker: DatePicker, public navCtrl: NavController, public alertCtrl: AlertController,
+  constructor(private app: App, private datePicker: DatePicker, public navCtrl: NavController, public alertCtrl: AlertController,
               public navParams: NavParams,private requestProvider:RequestProvider,storage:Storage) {
                 this.storage = storage;
                 this.storage.get('name').then(name=>{
@@ -64,14 +64,18 @@ export class CreateRequestPage {
     }
     console.log(newRequest);
       this.requestProvider.logRequest(newRequest).subscribe((request)=>{
+         console.log(request);
       if(request == "done"){
         this.requestProvider.showPopup('Success', 'Request Logged Successfully!');
-        this.navCtrl.setRoot('OnGoingRequestsPage');
+        let nav = this.app.getRootNav();
+        //nav.pop();
+        nav.push('OnGoingRequestsPage');
+        //this.navCtrl.parent.parent.setRoot('OnGoingRequestsPage');
       }
       else{
         this.requestProvider.showPopup('Error', 'Could not Log Request, Please try again!');
       }
-      console.log(request);
+     
     });
   }
 

@@ -10,7 +10,7 @@ import { Storage } from '@ionic/Storage';
   templateUrl: 'app.html'
 })
 export class MyApp {
-  
+
   rootPage:any;
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen,private storage:Storage) {
@@ -24,7 +24,7 @@ export class MyApp {
       this.storage.get('name').then((name) => {
         if(name){
           console.log('Got it');
-          this.rootPage ='HomePage';
+          this.rootPage ='HomeTabPage';
         }
         else{
           console.log('OOoooops')
