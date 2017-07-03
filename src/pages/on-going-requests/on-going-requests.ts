@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { RequestProvider } from '../../providers/request/request';
 import { AlertController } from 'ionic-angular';
+import {Storage} from '@ionic/Storage';
 //import { ActiveRequestsPage } from '../active-requests/active-requests';
 //import { RequestsPipe } from '../../pipes/requests/requests';
 
@@ -17,7 +18,8 @@ import { AlertController } from 'ionic-angular';
   templateUrl: 'on-going-requests.html',
 })
 export class OnGoingRequestsPage {
-
+  storage:Storage;
+  clientid:string;
   state = 'Active';
   requests:[{
     reqtype:string,
@@ -27,26 +29,36 @@ export class OnGoingRequestsPage {
   }];
 
   constructor(public navCtrl: NavController, public navParams: NavParams,private requestProvider:RequestProvider,
-              public alrtCtrl:AlertController) {
+              public alrtCtrl:AlertController,storage:Storage) {
+                this.storage = storage;
+                this.storage.get('name').then(name=>{
+                  
+                  console.log(this.clientid);
+                  this.requestProvider.getRequests(this.state,name).subscribe(requests=>{
+                      this.requests=requests;
+      
+                  });
+                  
+      });
+                
+                
   }
 
   
 
   ionViewDidLoad() {
-    this.requestProvider.getRequests(this.state).subscribe(requests=>{
-      this.requests=requests;
-    });
     console.log('ionViewDidLoad AllRequestPage');
   }
 
   showRequestDetails(request){
 
     let alert = this.alrtCtrl.create({
-      title:'Type: '+request.reqtype+ '<br><br>',
-      subTitle:'<b>' + 'Description: ' +'</b>' + request.reqdesc + '<br><br>' + 
+      title:'<div class ="request-title">' + "Request Details" + '</div>',
+      subTitle: '<b>' + 'Type: ' + '</b>' + request.reqtype  + '<br><br>' +
+                '<b>' + 'Description: ' +'</b>' + request.reqdesc + '<br><br>' + 
                 '<b>' + 'Create Date: ' + '</b>' + request.createdate + '<br><br>' +
                 '<b>' + 'Status: ' + '</b>' + request.status + '<br><br>'+
-                '<b>' + 'Date of Service: ' + '</b>' + request.date,
+                '<b>' + 'Service Date: ' + '</b>' + request.date ,
       buttons:[
         {
           text:'Delete',
@@ -86,6 +98,9 @@ export class OnGoingRequestsPage {
     
   }
 
+  refresh(){
+    this.navCtrl.setRoot(this.navCtrl.getActive().component);
+  }
  /*editRequest(request){
    this.navCtrl.push(ActiveRequestsPage,{
      request:request

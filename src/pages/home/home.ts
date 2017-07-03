@@ -9,7 +9,7 @@ import { AccountsPage } from '../accounts/accounts';
 import { SettingsPage } from '../settings/settings';
 import { UpdateProfilePage } from '../update-profile/update-profile';
 import { Storage } from '@ionic/Storage';
-import { Diagnostic } from '@ionic-native/diagnostic';
+import {Diagnostic} from '@ionic-native/diagnostic'
 import { NativeGeocoder, NativeGeocoderReverseResult,NativeGeocoderForwardResult } from '@ionic-native/native-geocoder';
 import { AutocompletePage } from '../autocomplete/autocomplete';
 import { LocationAccuracy } from '@ionic-native/location-accuracy';
@@ -147,6 +147,8 @@ export class HomePage {
       console.log('Error '+ err.message);
     });
   }
+
+  
   menuOpened() {
     if(this.map) {
       this.map.setClickable(false);

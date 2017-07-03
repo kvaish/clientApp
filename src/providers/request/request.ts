@@ -13,7 +13,7 @@ import 'rxjs/add/operator/map';
 export class RequestProvider {
 
   constructor(public http: Http, private alertCtrl: AlertController) {
-    console.log('Hello RequestProvider Provider');
+    
   }
 
   logRequest(newRequest){
@@ -22,9 +22,9 @@ export class RequestProvider {
     return this.http.post('http://10.100.1.4:3000/request',newRequest,{headers:headers}).map(res=>res.json());
   }
 
-  getRequests(status){
+  getRequests(status,clientid){
     console.log(status);
-    return this.http.get('http://10.100.1.4:3000/getRequests/'+status).map(res=>res.json());
+    return this.http.get('http://10.100.1.4:3000/getRequests/'+status+'/'+clientid).map(res=>res.json());
   }
 
   deleteRequest(id:any){

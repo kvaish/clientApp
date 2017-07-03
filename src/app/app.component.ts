@@ -10,10 +10,10 @@ import { Storage } from '@ionic/Storage';
   templateUrl: 'app.html'
 })
 export class MyApp {
-  rootPage:any ;
-  private storage:Storage;
+  
+  rootPage:any;
 
-  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen,storage:Storage) {
+  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen,private storage:Storage) {
     this.storage = storage;
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.

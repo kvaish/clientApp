@@ -30573,7 +30573,7 @@ page-on-going-requests .card-header {
 }
 
 page-on-going-requests .item-button {
-  padding: 15px 10px 15px 10px !important;
+  padding: 20px 10px 20px 10px !important;
   float: right;
 }
 
@@ -30582,4 +30582,12 @@ page-on-going-requests .details-header {
   color: white;
   text-align: center;
   font-weight: bold;
+}
+
+page-on-going-requests .alert-head {
+  background-color: black !important;
+}
+
+page-on-going-requests .request-title {
+  background-color: blue !important;
 }

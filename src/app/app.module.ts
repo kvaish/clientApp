@@ -44,7 +44,6 @@ import { HomePageModule } from '../pages/home/home.module';
     HttpModule,
     IonicStorageModule.forRoot(),
     HomePageModule
-
     //OnGoingRequestsPageModule,
     //RequestHistoryPageModule
   ],
