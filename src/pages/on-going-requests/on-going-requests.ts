@@ -21,6 +21,7 @@ export class OnGoingRequestsPage {
   storage:Storage;
   clientid:string;
   state = 'Active';
+  createdate:string;
   requests:[{
     reqtype:string,
     phone:number,
@@ -48,6 +49,7 @@ export class OnGoingRequestsPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad AllRequestPage');
+    
   }
 
   showRequestDetails(request){
@@ -61,11 +63,11 @@ export class OnGoingRequestsPage {
                 '<b>' + 'Service Date: ' + '</b>' + request.date ,
       buttons:[
         {
-          text:'Delete',
+          text:'Cancel Job',
           handler:()=>{
             let alert2 = this.alrtCtrl.create({
               title: 'Delete Request!!',
-              subTitle: 'Are you sure you want to delete this request ?',
+              subTitle: 'Are you sure you want to Cancel this Service ?',
               buttons:[
                 {
                   text: 'No',
@@ -74,11 +76,11 @@ export class OnGoingRequestsPage {
                 {
                   text: 'Yes',
                   handler:()=>{
-                    this.requestProvider.deleteRequest(request._id).subscribe(success=>{
+                    this.requestProvider.updateRequest(request._id).subscribe(success=>{
                       var index = this.requests.indexOf(request,0);
                       if(index > -1){
                         this.requests.splice(index,-1);
-                        this.ionViewDidLoad();
+                        this.navCtrl.setRoot(this.navCtrl.getActive().component);
                       }
                     });
                   }
@@ -96,6 +98,14 @@ export class OnGoingRequestsPage {
     });
     alert.present();
     
+  }
+
+  menuOpened(){
+
+  }
+
+  menuClosed(){
+
   }
 
   refresh(){

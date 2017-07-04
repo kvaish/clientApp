@@ -30591,3 +30591,38 @@ page-on-going-requests .alert-head {
 page-on-going-requests .request-title {
   background-color: blue !important;
 }
+
+page-request-history ion-row {
+  -webkit-justify-content: center !important;
+  -ms-flex-pack: center !important;
+  justify-content: center !important;
+}
+
+page-request-history .card {
+  box-shadow: 0 10px 10px 0 gray;
+}
+
+page-request-history .card-header {
+  background-color: #1fb5bf;
+  padding: 12px;
+}
+
+page-request-history .item-button {
+  padding: 20px 10px 20px 10px !important;
+  float: right;
+}
+
+page-request-history .details-header {
+  font-size: 20px;
+  color: white;
+  text-align: center;
+  font-weight: bold;
+}
+
+page-request-history .alert-head {
+  background-color: black !important;
+}
+
+page-request-history .request-title {
+  background-color: blue !important;
+}

@@ -1,3 +1,4 @@
+
 <ion-menu [content]="content" (ionOpen)="menuOpened()" (ionClose)="menuClosed()">
  
 <!-- The side menu title -->
@@ -10,7 +11,7 @@
     <ion-list>
       <!-- remember the `this.pages` object we created in `app.js`?
       // Iterate through, then when clicked, run the associated function
-      // passing in the #p item.
+      // passing in the #p <item class=""></item>
       // changed #p to let p instead -->
       <button ion-item *ngFor="let p of pages" (click)="openPage(p)">
         {{p.title}}
@@ -21,7 +22,6 @@
 </ion-menu>
 <!-- What's my root? remember the this.rootPage?-->
 <ion-nav id="nav" [root]="rootPage" #content swipe-back-enabled="false"></ion-nav>
-
 
 <ion-header>
   <ion-navbar>

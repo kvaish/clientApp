@@ -129,7 +129,7 @@ export class HomePage {
       console.log('Error '+ err.message);
     });
   }
-  menuOpened() {
+  menuOpened(){
     if(this.map) {
       this.map.setClickable(false);
     }
@@ -145,7 +145,7 @@ export class HomePage {
     this.storage.clear().then(() => {
       console.log('Keys have been cleared');
     });
-    this.nav.setRoot('LoginPage');
+    this.nav.parent.parent.setRoot('LoginPage');
     
   }
 

@@ -4,6 +4,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { Storage } from '@ionic/Storage';
 
+
 //import { LoginPage } from '../pages/login/login';
 
 @Component({
@@ -12,6 +13,7 @@ import { Storage } from '@ionic/Storage';
 export class MyApp {
   rootPage:any;
   private storage:Storage;
+  
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen,storage:Storage) {
     this.storage = storage;
@@ -24,14 +26,16 @@ export class MyApp {
       this.storage.get('name').then((name) => {
         if(name){
           console.log('Got it');
-          this.rootPage ='HomePage';
+          this.rootPage ='HomeTabPage';
         }
         else{
           console.log('OOoooops')
           this.rootPage = 'LoginPage';
         }
     });
-    });
+  });
+  
+ 
   }
 }
 

@@ -4,18 +4,53 @@
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
 -->
+<ion-menu [content]="content" (ionOpen)="menuOpened()" (ionClose)="menuClosed()">
+ 
+<!-- The side menu title -->
+  <ion-header>
+    <ion-toolbar color="dark">
+      <ion-title>Menu</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content>
+    <ion-list>
+      <!-- remember the `this.pages` object we created in `app.js`?
+      // Iterate through, then when clicked, run the associated function
+      // passing in the #p <item class=""></item>
+      // changed #p to let p instead -->
+      <button ion-item *ngFor="let p of pages" (click)="openPage(p)">
+        {{p.title}}
+      </button>
+    </ion-list>
+  </ion-content>
+ 
+</ion-menu>
+<!-- What's my root? remember the this.rootPage?-->
+<ion-nav id="nav" [root]="rootPage" #content swipe-back-enabled="false"></ion-nav>
 <ion-header>
-
   <ion-navbar>
-    <ion-title>On Going Requests</ion-title>
+    <ion-buttons start>
+      <button ion-button icon-only menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>
+      Ongoing Requests 
+    </ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="logout()">
+        <ion-icon name="log-out"></ion-icon>
+      </button>
+    </ion-buttons>
+    
+    
   </ion-navbar>
-
 </ion-header>
 
 
 <ion-content padding>
   <h1>List of All the requests</h1> 
-  <h4>Filter According to:- </h4> <button *ngIf="type != ''" ion-button style="float: right;" (click)="refresh()">Clear Filters</button> 
+  <h4>Filter According to:- {{type}}</h4> <button *ngIf="type != ' ' " ion-button style="float: right;" (click)="refresh()">Clear Filters</button> 
   <ion-item>
     <ion-label>Type Of Request</ion-label>
     <ion-select [(ngModel)]="type" name="type" >
@@ -59,7 +94,9 @@
   </header>
   <ion-item>
     
-    <h1>Create Date</h1><p>{{request.createdate}}</p>
+    <p style="font-weight: bold;">Created Date:</p><p>{{request.createdate}}</p><br>
+    <p style="font-weight: bold;">Date of Service:</p><p>{{request.date}}</p><br> 
+    <p style="font-weight: bold;">Job Status</p><p>{{request.status}}</p>
     <button ion-button (click)="showRequestDetails(request)">Details</button>
   </ion-item>
 </ion-card>

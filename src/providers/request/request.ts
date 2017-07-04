@@ -30,10 +30,8 @@ export class RequestProvider {
     return this.http.delete('http://localhost:3000/deleteRequest/'+id).map(res=>res.json());
   }
 
-  updateRequest(saveRequest){
-    var headers = new Headers();
-    headers.append('Content-Type','application/json');
-    return this.http.put('http://localhost:3000/updateRequest',saveRequest,{headers:headers}).map(res=>res.json());
+  updateRequest(id:any){
+    return this.http.get('http://localhost:3000/updateRequest/'+id).map(res=>res.json());
   }
   
   showPopup(title, text) {
