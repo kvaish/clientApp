@@ -51,6 +51,11 @@ export class CreateRequestPage {
   }
 
   logRequest(){
+    if(this.date == 'now'){
+      alert('date is now');
+      this.date = new Date;
+    }
+    console.log(this.date);
     const newRequest={
       reqtype:this.reqtype,
       actype:this.actype,
@@ -60,8 +65,8 @@ export class CreateRequestPage {
       address: this.navParams.get('address'),
       clientid:this.clientid,
       date: this.date
-
     }
+    
     console.log(newRequest);
       this.requestProvider.logRequest(newRequest).subscribe((request)=>{
          console.log(request);

@@ -91,6 +91,11 @@ var CreateRequestPage = (function () {
     };
     CreateRequestPage.prototype.logRequest = function () {
         var _this = this;
+        if (this.date == 'now') {
+            alert('date is now');
+            this.date = new Date;
+        }
+        console.log(this.date);
         var newRequest = {
             reqtype: this.reqtype,
             actype: this.actype,

@@ -58,7 +58,7 @@ export class OnGoingRequestsPage {
                 '<b>' + 'Description: ' +'</b>' + request.reqdesc + '<br><br>' + 
                 '<b>' + 'Create Date: ' + '</b>' + request.createdate + '<br><br>' +
                 '<b>' + 'Status: ' + '</b>' + request.status + '<br><br>'+
-                '<b>' + 'Service Date: ' + '</b>' + request.date ,
+                '<b>' + 'Service Date: ' + '</b>' + request.date  ,
       buttons:[
         {
           text:'Delete',
