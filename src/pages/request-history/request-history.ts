@@ -15,7 +15,7 @@ import {Storage} from '@ionic/Storage';
   templateUrl: 'request-history.html',
 })
 export class RequestHistoryPage {
-  storage:Storage;
+  //storage:Storage;
   clientid:string;
   state = 'Completed';
   requests:[{
@@ -26,9 +26,12 @@ export class RequestHistoryPage {
   }];
 
   constructor(public navCtrl: NavController, public navParams: NavParams,private requestProvider:RequestProvider,
-              public alrtCtrl:AlertController,storage:Storage) {
-                this.storage = storage;
-                this.storage.get('name').then(name=>{
+              public alrtCtrl:AlertController,private storage:Storage) {
+               
+  }
+
+  ionViewWillEnter(){
+    this.storage.get('name').then(name=>{
                   
                   
                   this.requestProvider.getRequests(this.state,name).subscribe(requests=>{
@@ -37,13 +40,11 @@ export class RequestHistoryPage {
                   });
                   
       });
-                
   }
-
-  
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad AllRequestPage');
+    
   }
 
   showRequestDetails(request){

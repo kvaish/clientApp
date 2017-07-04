@@ -147,13 +147,9 @@ export class HomePage {
       console.log('Error '+ err.message);
     });
   }
-<<<<<<< HEAD
-  menuOpened(){
-=======
 
   
   menuOpened() {
->>>>>>> 93604d82e32d55bf9a526ae3494c77fdac8ce5e1
     if(this.map) {
       this.map.setClickable(false);
     }
