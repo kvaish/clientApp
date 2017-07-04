@@ -44,17 +44,15 @@
 </ion-header>
  
 <ion-content class="home">
-  <ion-item>
+  <div #map id="map">
+    <ion-item>
     <!--//<ion-input [(ngModel)]="displayAddress" id="displayAdress" type="text" value="" placeholder="Enter Address"></ion-input>-->
     <ion-input (focus)="showAddressModal()" [(ngModel)]="places.place" type="text" placeholder="Enter Address"></ion-input>
   </ion-item>
- 
-    
     <ion-fab right middle padding>
       <button ion-fab (click)="createRequest()"><ion-icon name="md-add"></ion-icon></button>
     </ion-fab>
-  
-  <div #map id="map"></div>  
+  </div>  
   
 </ion-content>
 

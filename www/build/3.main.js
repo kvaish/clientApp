@@ -18,6 +18,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
+//import {IonicStorageModule} from '@ionic/Storage';
 var LoginPageModule = (function () {
     function LoginPageModule() {
     }
@@ -36,7 +37,6 @@ LoginPageModule = __decorate([
         ],
         providers: [
             __WEBPACK_IMPORTED_MODULE_2__login__["a" /* LoginPage */],
-            Storage
         ]
     })
 ], LoginPageModule);
@@ -99,17 +99,11 @@ var LoginPage = (function () {
                     _this.showLoading();
                     _this.nav.setRoot('HomeTabPage');
                 }
-                else if (data == 'false') {
+                else {
                     _this.showError('Failed');
                 }
             }
-            else if (!data.username) {
-                var username = data.toString();
-                if (username == 'false') {
-                    _this.showError('Failed');
-                }
-            }
-        });
+        }, function (err) { return console.log(err); });
     };
     LoginPage.prototype.showLoading = function () {
         this.loading = this.loadingCtrl.create({
@@ -131,12 +125,12 @@ var LoginPage = (function () {
 LoginPage = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* IonicPage */])(),
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_5" /* Component */])({
-        selector: 'page-login',template:/*ion-inline-start:"C:\Users\svohra\Desktop\fld\clientApp\src\pages\login\login.html"*/'<!--\n\n  Generated template for the LoginPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-content class="login-content" padding>\n\n  <!--<ion-row class="logo-row">\n\n    <ion-col></ion-col>\n\n    <ion-col width-67>\n\n      <img src=""/>\n\n    </ion-col>\n\n    <ion-col></ion-col>\n\n  </ion-row>-->\n\n  <ion-card>\n\n    <ion-card-header class="card-header">\n\n    <ion-title>\n\n      Login\n\n    </ion-title>\n\n      \n\n    </ion-card-header>\n\n  <div class="login-box">\n\n    <form #registerForm="ngForm" ngSubmit="login()">\n\n      <ion-row>\n\n        <ion-col>\n\n          <ion-list inset>\n\n            \n\n            <ion-item>\n\n              <ion-label floating>Username/Email</ion-label>\n\n              <ion-input type="email"   name="email" [(ngModel)]="email" required></ion-input>\n\n            </ion-item>\n\n            \n\n            <ion-item>\n\n              <ion-label floating>Password</ion-label>\n\n              <ion-input type="password"  name="password" [(ngModel)]="password" required></ion-input>\n\n            </ion-item>\n\n            \n\n          </ion-list>\n\n        </ion-col>\n\n      </ion-row>\n\n      \n\n      <ion-row>\n\n        <ion-col class="signup-col">\n\n          <ion-buttons start>\n\n            <button ion-button class="register-btn"  type="button" clear (click)="createAccount()">Create New Account</button>\n\n          </ion-buttons>\n\n        </ion-col>\n\n          <ion-buttons end>\n\n            <button ion-button icon-only round large clear type="submit"  [disabled]="!registerForm.form.valid" (click)="login()">\n\n              <ion-icon name="md-log-in"></ion-icon>\n\n            </button>\n\n          </ion-buttons>\n\n          \n\n          \n\n        \n\n      </ion-row>\n\n      \n\n    </form>\n\n  </div>\n\n  </ion-card>\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\svohra\Desktop\fld\clientApp\src\pages\login\login.html"*/,
+        selector: 'page-login',template:/*ion-inline-start:"C:\Users\svohra\Desktop\fld\clientApp\src\pages\login\login.html"*/'<!--\n\n  Generated template for the LoginPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-content class="login-content" padding>\n\n  <!--<ion-row class="logo-row">\n\n    <ion-col></ion-col>\n\n    <ion-col width-67>\n\n      <img src=""/>\n\n    </ion-col>\n\n    <ion-col></ion-col>\n\n  </ion-row>-->\n\n  <ion-card>\n\n    <ion-card-header class="card-header">\n\n    <ion-title>\n\n      Login\n\n    </ion-title>\n\n      \n\n    </ion-card-header>\n\n  <div class="login-box">\n\n    <form #registerForm="ngForm" ngSubmit="login()">\n\n      <ion-row>\n\n        <ion-col>\n\n          <ion-list inset>\n\n            \n\n            <ion-item>\n\n              <ion-label floating>Username/Email</ion-label>\n\n              <ion-input type="email"   name="email" [(ngModel)]="email" required></ion-input>\n\n            </ion-item>\n\n            \n\n            <ion-item>\n\n              <ion-label floating>Password</ion-label>\n\n              <ion-input type="password"  name="password" [(ngModel)]="password" required></ion-input>\n\n            </ion-item>\n\n            \n\n          </ion-list>\n\n        </ion-col>\n\n      </ion-row>\n\n      \n\n      <ion-row>\n\n        <ion-col class="signup-col">\n\n          <ion-buttons start>\n\n<<<<<<< HEAD\n\n            <button ion-button class="register-btn"  type="button" clear (click)="createAccount()">Create New Account</button>\n\n=======\n\n            <button type="button" ion-button class="register-btn"  clear (click)="createAccount()">Create New Account</button>\n\n>>>>>>> 93604d82e32d55bf9a526ae3494c77fdac8ce5e1\n\n          </ion-buttons>\n\n        </ion-col>\n\n          <ion-buttons end>\n\n            <button ion-button icon-only round large clear type="submit"  [disabled]="!registerForm.form.valid" (click)="login()">\n\n              <ion-icon name="md-log-in"></ion-icon>\n\n            </button>\n\n          </ion-buttons>\n\n          \n\n          \n\n        \n\n      </ion-row>\n\n      \n\n    </form>\n\n  </div>\n\n  </ion-card>\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\svohra\Desktop\fld\clientApp\src\pages\login\login.html"*/,
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */], __WEBPACK_IMPORTED_MODULE_2__providers_auth_service_auth_service__["a" /* AuthServiceProvider */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* AlertController */],
-        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* LoadingController */], __WEBPACK_IMPORTED_MODULE_3__ionic_Storage__["b" /* Storage */]])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__providers_auth_service_auth_service__["a" /* AuthServiceProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_auth_service_auth_service__["a" /* AuthServiceProvider */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* AlertController */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* LoadingController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* LoadingController */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_3__ionic_Storage__["b" /* Storage */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__ionic_Storage__["b" /* Storage */]) === "function" && _e || Object])
 ], LoginPage);
 
+var _a, _b, _c, _d, _e;
 //# sourceMappingURL=login.js.map
 
 /***/ })

@@ -19,19 +19,27 @@ export class RequestProvider {
   logRequest(newRequest){
     var headers = new Headers();
   	headers.append('Content-Type','application/json');
-    return this.http.post('http://localhost:3000/request',newRequest,{headers:headers}).map(res=>res.json());
+    return this.http.post('http://10.100.1.4:3000/request',newRequest,{headers:headers}).map(res=>res.json());
   }
 
   getRequests(status,clientid){
-    return this.http.get('http://localhost:3000/getRequests/'+status + '/' + clientid).map(res=>res.json());
+    console.log(status);
+    return this.http.get('http://10.100.1.4:3000/getRequests/'+status+'/'+clientid).map(res=>res.json());
   }
 
   deleteRequest(id:any){
-    return this.http.delete('http://localhost:3000/deleteRequest/'+id).map(res=>res.json());
+    return this.http.delete('http://10.100.1.4:3000/deleteRequest/'+id).map(res=>res.json());
   }
 
+<<<<<<< HEAD
   updateRequest(id:any){
     return this.http.get('http://localhost:3000/updateRequest/'+id).map(res=>res.json());
+=======
+  updateRequest(saveRequest){
+    var headers = new Headers();
+    headers.append('Content-Type','application/json');
+    return this.http.put('http://10.100.1.4:3000/updateRequest',saveRequest,{headers:headers}).map(res=>res.json());
+>>>>>>> 93604d82e32d55bf9a526ae3494c77fdac8ce5e1
   }
   
   showPopup(title, text) {
