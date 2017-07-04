@@ -73,7 +73,7 @@ export class CreateRequestPage {
       if(request == "done"){
         this.requestProvider.showPopup('Success', 'Request Logged Successfully!');
         let nav = this.app.getRootNav();
-        //nav.pop();
+        this.navCtrl.setRoot(this.navCtrl.getActive().component)
         nav.push('OnGoingRequestsPage');
         //this.navCtrl.parent.parent.setRoot('OnGoingRequestsPage');
       }

@@ -31,8 +31,7 @@ export class HomePage {
   @ViewChild('map') mapElement: ElementRef;
   onGoingRequestsRoot = 'OnGoingRequestsPage'
   map: GoogleMap;
-  username = '';
-  email = '';
+  
   address: any;
   // addressString: any;
   pages: Array<{title: string, component: any}>
@@ -48,7 +47,7 @@ export class HomePage {
       if(canRequest){
         this.locationAccuracy.request(this.locationAccuracy.REQUEST_PRIORITY_HIGH_ACCURACY).then(
              () => {
-               alert('Request successful');
+               //alert('Request successful');
                
             },
         error =>{
@@ -138,7 +137,7 @@ export class HomePage {
                   let msg = res.houseNumber+', '+ res.street+', '+ res.city+', '+ res.district+', '+ res.countryName;
                   //input.value = msg;
                   this.places.place = msg;
-                  alert(msg);
+                  //alert(msg);
                 });
               });
             });
@@ -186,8 +185,10 @@ export class HomePage {
     //let me = this;
     modal.onDidDismiss(data => {
       this.places.place = data;
-      this.getGeocode(this.places.place);
-      this.map.setClickable(true);
+      if(this.places.place != ''){
+        this.getGeocode(this.places.place);
+        this.map.setClickable(true);
+      }
     });
     
     modal.present();
@@ -197,7 +198,8 @@ export class HomePage {
   getGeocode(data){
     this.geocoder.forwardGeocode(data).then((res: NativeGeocoderForwardResult) => {
       //alert(res);
-      let point = new LatLng(parseFloat(res.latitude), parseFloat(res.longitude));
+      this.address = new LatLng(parseFloat(res.latitude), parseFloat(res.longitude));
+      //alert(this.address);
       // let markerOptions: any = {
       //         position: point,
       //         draggable: true,
@@ -205,14 +207,14 @@ export class HomePage {
       //         icon: 'assets/icon/marker.png'
       //       };
       let position: CameraPosition = {
-        target: point,
+        target: this.address,
         zoom: 17,
         tilt: 30,
         bearing: 50
       };
 
       //this.map.addMarker(markerOptions).then((marker: Marker) => alert('success'));
-      this.marker.setPosition(point);
+      this.marker.setPosition(this.address);
       this.map.moveCamera(position);
       //this.map.setClickable(true);
     });

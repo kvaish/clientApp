@@ -21,7 +21,7 @@ import { AccountsPage } from '../pages/accounts/accounts';
 import { HttpModule} from '@angular/http';
 import { RequestProvider } from '../providers/request/request'; 
 import {IonicStorageModule} from '@ionic/Storage';
-import {Storage} from '@ionic/Storage';
+//import {Storage} from '@ionic/Storage';
 import { HomePageModule } from '../pages/home/home.module';
 
 
