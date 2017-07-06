@@ -27,6 +27,8 @@ export class AutocompletePage {
     };
   }
 
+  
+
   dismiss() {
     this.viewCtrl.dismiss();
   }

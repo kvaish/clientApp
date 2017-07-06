@@ -3,10 +3,11 @@ import { IonicPageModule } from 'ionic-angular';
 import { HomePage } from './home';
 import { AutocompletePage} from '../autocomplete/autocomplete';
 
+
 @NgModule({
   declarations: [
     HomePage,
-    AutocompletePage
+    AutocompletePage,
   ],
   imports: [
     IonicPageModule.forChild(HomePage),   
@@ -15,7 +16,7 @@ import { AutocompletePage} from '../autocomplete/autocomplete';
     HomePage
   ],
   entryComponents:[
-    AutocompletePage
+    AutocompletePage,
   ]
 })
 export class HomePageModule {}

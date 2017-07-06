@@ -1,0 +1,44 @@
+<!--
+  Generated template for the RequestDetailsPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Service Details</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+   <ion-list >
+
+     <ion-item>
+       <p class="heading">Service Type: </p>{{request.reqtype}}
+     </ion-item>
+
+     <ion-item>
+       <p class="heading">Date of Creation: </p>{{request.createdate}}
+     </ion-item>
+
+     <ion-item>
+       <p class="heading">Date of Service : </p>{{request.date}}
+     </ion-item>
+
+     <ion-item>
+       <p class="heading">Description: </p>{{request.reqdesc}}
+     </ion-item>
+
+     <ion-item>
+       <p class="heading">Service Status: </p>{{request.status}}
+     </ion-item>
+
+     <ion-item>
+       <p class="heading">Address: </p> {{address}} 
+     </ion-item>
+
+   </ion-list>
+</ion-content>

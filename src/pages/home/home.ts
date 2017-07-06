@@ -22,7 +22,8 @@ import { LocationAccuracy } from '@ionic-native/location-accuracy';
   selector: 'page-home',
   templateUrl: 'home.html',
   entryComponents: [
-    AutocompletePage
+    AutocompletePage,
+    
   ]
 })
 export class HomePage {
@@ -39,7 +40,13 @@ export class HomePage {
       place: ''
     };
   marker: Marker;
-  constructor( private viewCtrl: ViewController, private diagnostic: Diagnostic, private locationAccuracy: LocationAccuracy, private storage:Storage, private modalCtrl:ModalController, private toaster: ToastController, private geocoder: NativeGeocoder, private geolocation: Geolocation, private alertCtrl: AlertController, private splashScreen: SplashScreen, private statusBar: StatusBar, private nav: NavController, private auth: AuthServiceProvider, private menu: MenuController, private platform: Platform) {}
+  constructor( private viewCtrl: ViewController, private diagnostic: Diagnostic,
+               private locationAccuracy: LocationAccuracy, private storage:Storage, 
+               private modalCtrl:ModalController, private toaster: ToastController,
+               private geocoder: NativeGeocoder, private geolocation: Geolocation, 
+               private alertCtrl: AlertController, private splashScreen: SplashScreen,
+               private statusBar: StatusBar, private nav: NavController, private auth: AuthServiceProvider,
+               private menu: MenuController, private platform: Platform) {}
 
 
   ngOnInit() {
@@ -147,13 +154,9 @@ export class HomePage {
       console.log('Error '+ err.message);
     });
   }
-<<<<<<< HEAD
-  menuOpened(){
-=======
 
   
   menuOpened() {
->>>>>>> 93604d82e32d55bf9a526ae3494c77fdac8ce5e1
     if(this.map) {
       this.map.setClickable(false);
     }

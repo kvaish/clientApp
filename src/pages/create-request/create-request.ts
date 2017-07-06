@@ -69,7 +69,7 @@ export class CreateRequestPage {
     
     console.log(newRequest);
       this.requestProvider.logRequest(newRequest).subscribe((request)=>{
-         console.log(request);
+        
       if(request == "done"){
         this.requestProvider.showPopup('Success', 'Request Logged Successfully!');
         let nav = this.app.getRootNav();

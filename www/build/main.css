@@ -30510,6 +30510,17 @@ ion-navbar.toolbar {
 
 ion-header {
   color: #1fb5bf;
+  background-color: #1fb5bf !important;
+}
+
+ion-navbar .toolbar-background-md {
+  background-color: #1fb5bf;
+  color: white;
+}
+
+ion-navbar .toolbar-title {
+  text-align: center;
+  color: white;
 }
 
 .card-header {
@@ -30590,6 +30601,19 @@ page-on-going-requests .alert-head {
 
 page-on-going-requests .request-title {
   background-color: blue !important;
+}
+
+page-request-details {
+  height: 20%;
+  width: 20%;
+}
+
+page-request-details ion-navbar.toolbar {
+  background-color: gray !important;
+}
+
+page-request-details .heading {
+  font-weight: bolder;
 }
 
 page-request-history ion-row {

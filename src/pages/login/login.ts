@@ -15,11 +15,11 @@ import { Storage } from '@ionic/Storage';
   templateUrl: 'login.html',
 })
 export class LoginPage {
-
+  private storage:Storage;
   loading: Loading;
   email:string;
   password:string;
-  private storage:Storage;
+ 
  
   constructor(private nav: NavController, private auth: AuthServiceProvider, private alertCtrl: AlertController,
               private loadingCtrl: LoadingController,storage:Storage) { 
@@ -35,8 +35,8 @@ export class LoginPage {
       email:this.email,
       password:this.password
     }
-  this.auth.login(user).subscribe((data)=>{
-     console.log(data);
+    this.auth.login(user).subscribe((data)=>{
+     
     this.storage.set('name',data.username);
       if(data.username){
         if(data != 'err'){

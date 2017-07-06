@@ -1,8 +1,11 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams,ModalController } from 'ionic-angular';
 import { RequestProvider } from '../../providers/request/request';
 import { AlertController } from 'ionic-angular';
-import {Storage} from '@ionic/Storage';
+import { Storage } from '@ionic/Storage';
+import { RequestDetailsPage } from '../request-details/request-details';
+
+
 //import { ActiveRequestsPage } from '../active-requests/active-requests';
 //import { RequestsPipe } from '../../pipes/requests/requests';
 
@@ -13,9 +16,13 @@ import {Storage} from '@ionic/Storage';
  * on Ionic pages and navigation.
  */
 @IonicPage()
+
 @Component({
   selector: 'page-on-going-requests',
   templateUrl: 'on-going-requests.html',
+  entryComponents:[
+    RequestDetailsPage
+  ]
 })
 export class OnGoingRequestsPage {
   storage:Storage;
@@ -30,31 +37,33 @@ export class OnGoingRequestsPage {
   }];
 
   constructor(public navCtrl: NavController, public navParams: NavParams,private requestProvider:RequestProvider,
-              public alrtCtrl:AlertController,storage:Storage) {
-                this.storage = storage;
-                this.storage.get('name').then(name=>{
-                  
-                  console.log(this.clientid);
-                  this.requestProvider.getRequests(this.state,name).subscribe(requests=>{
-                      this.requests=requests;
-      
-                  });
-                  
-      });
-                
-                
+              public alrtCtrl:AlertController,storage:Storage,public modalCtrl:ModalController) {
+
+                this.storage = storage;  
   }
 
   
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad AllRequestPage');
+    this.storage.get('name').then(name=>{
+                  
+                  this.requestProvider.getRequests(this.state,name).subscribe(requests=>{
+                      this.requests=requests;
+      
+                  });
+                  
+      });
+    
     
   }
 
   showRequestDetails(request){
 
-    let alert = this.alrtCtrl.create({
+    let modal = this.modalCtrl.create(RequestDetailsPage,{'request':request});
+    modal.present();
+
+    /*let alert = this.alrtCtrl.create({
       title:'<div class ="request-title">' + "Request Details" + '</div>',
       subTitle: '<b>' + 'Type: ' + '</b>' + request.reqtype  + '<br><br>' +
                 '<b>' + 'Description: ' +'</b>' + request.reqdesc + '<br><br>' + 
@@ -96,7 +105,7 @@ export class OnGoingRequestsPage {
         }
       ]
     });
-    alert.present();
+    alert.present();*/
     
   }
 
@@ -116,5 +125,13 @@ export class OnGoingRequestsPage {
      request:request
    });
  }*/
+
+ logout(){
+    this.storage.clear().then(() => {
+      console.log('Keys have been cleared');
+    });
+    this.navCtrl.parent.parent.setRoot('LoginPage');
+    
+  }
  
 }

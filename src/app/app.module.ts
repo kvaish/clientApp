@@ -21,8 +21,10 @@ import { AccountsPage } from '../pages/accounts/accounts';
 import { HttpModule} from '@angular/http';
 import { RequestProvider } from '../providers/request/request'; 
 import {IonicStorageModule} from '@ionic/Storage';
+//import { RequestDetailsPage } from '../pages/request-details/request-details';
 //import {Storage} from '@ionic/Storage';
 import { HomePageModule } from '../pages/home/home.module';
+import { OnGoingRequestsPageModule } from '../pages/on-going-requests/on-going-requests.module';
 
 
 //import { RequestsPipe } from '../pipes/requests/requests';
@@ -33,9 +35,7 @@ import { HomePageModule } from '../pages/home/home.module';
     AccountsPage,
     UpdateProfilePage,
     SettingsPage,
-
     //AutocompletePage
-
     //RequestsPipe
   ],
   imports: [
@@ -43,8 +43,8 @@ import { HomePageModule } from '../pages/home/home.module';
     IonicModule.forRoot(MyApp),
     HttpModule,
     IonicStorageModule.forRoot(),
-    HomePageModule
-    //OnGoingRequestsPageModule,
+    HomePageModule,
+    OnGoingRequestsPageModule,
     //RequestHistoryPageModule
   ],
   bootstrap: [IonicApp],
@@ -52,7 +52,7 @@ import { HomePageModule } from '../pages/home/home.module';
     MyApp,
     AccountsPage,
     UpdateProfilePage,
-    SettingsPage,
+    SettingsPage
     //AutocompletePage
   ],
   providers: [

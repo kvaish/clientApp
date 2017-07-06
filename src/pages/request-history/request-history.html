@@ -35,7 +35,7 @@
       </button>
     </ion-buttons>
     <ion-title>
-      Ongoing Requests 
+      Requests History
     </ion-title>
     <ion-buttons end>
       <button ion-button icon-only (click)="logout()">
@@ -88,7 +88,7 @@
   
 </ion-grid>
 </ion-list>-->
-<ion-card *ngFor="let request of requests | requests : type " class="card">
+<ion-card *ngFor="let request of requests  " class="card">
   <header class="card-header">
     <p class="details-header">Request Type:{{request.reqtype }}</p>
   </header>

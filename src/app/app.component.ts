@@ -28,7 +28,7 @@ export class MyApp {
           this.rootPage ='HomeTabPage';
         }
         else{
-          console.log('OOoooops')
+          
           this.rootPage = 'LoginPage';
         }
     });

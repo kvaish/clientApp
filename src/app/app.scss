@@ -16,6 +16,16 @@
 // automatically applied to the <body> element in the app.
 ion-header{
     color: #1fb5bf;
+    background-color: #1fb5bf !important;
+}
+
+ion-navbar .toolbar-background-md{
+    background-color: #1fb5bf;
+    color: white;
+}
+ion-navbar .toolbar-title{
+    text-align: center;
+    color: white;
 }
 
 .card-header{ background: #2a2a2a; }
