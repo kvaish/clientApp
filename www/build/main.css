@@ -30541,11 +30541,89 @@ ion-label {
   color: #757575;
 }
 
+page-autocomplete ion-modal {
+  /* left: 0; */
+  /* top: 0; */
+  margin: 110px auto;
+  position: static;
+  position: relative;
+  display: block;
+  width: 70%;
+  height: 50%;
+  contain: strict;
+}
+
 page-create-request .radio-icon {
   /* HIDE RADIO */
   visibility: hidden;
   /* Makes input not-clickable */
   position: absolute;
+}
+
+page-create-request form {
+  border: 1px solid #ccc;
+}
+
+page-create-request ion-list {
+  width: 100%;
+}
+
+page-create-request ion-row {
+  border: 1px solid #1fb5bf;
+}
+
+page-create-request .item-radio.item-md ion-label {
+  margin-left: 25px;
+}
+
+page-create-request .range-md.range-has-pin {
+  padding-top: 0px;
+}
+
+page-create-request h2 {
+  margin-bottom: 1rem !important;
+  margin-top: 1.8rem !important;
+  font-weight: 500;
+  color: #424242;
+}
+
+page-create-request .innerList .item-md.item-block .item-inner {
+  border: none;
+}
+
+page-create-request .item-md {
+  padding-left: 0px;
+}
+
+page-create-request .innerList .item-block {
+  text-align: center;
+}
+
+page-create-request .col {
+  padding: 0px;
+}
+
+page-create-request .item-radio-checked {
+  background: #1fb5bf;
+  border-color: darkcyan;
+}
+
+page-create-request .item-radio-checked i, page-create-request .item-radio-checked p {
+  color: #fff;
+}
+
+page-create-request .item-md.item-block .item-inner {
+  padding-right: 0px;
+}
+
+page-create-request ion-fab {
+  position: static;
+  float: right;
+}
+
+page-create-request .last {
+  margin-bottom: 0px;
+  padding-top: 5px;
 }
 
 ion-app._gmaps_cdv_ .nav-decor {
@@ -30572,6 +30650,18 @@ page-home ion-app._gmaps_cdv_ .nav-decor {
 
 page-home .show-map {
   opacity: 1;
+}
+
+page-home ion-modal {
+  /* left: 0; */
+  /* top: 0; */
+  margin: 110px auto;
+  position: static;
+  position: relative;
+  display: block;
+  width: 70%;
+  height: 50%;
+  contain: strict;
 }
 
 page-on-going-requests ion-row {
