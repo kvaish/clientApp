@@ -5,6 +5,9 @@ page-request-details {
     .heading{
         font-weight: bolder ;
     }
-    height: 20%;
-    width: 20%;
+    ion-modal{
+        height: 70% !important;
+        width: 80% !important;
+        margin: 56px !important;
+    }
 }
