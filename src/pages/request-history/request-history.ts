@@ -16,7 +16,7 @@ import { RequestDetailsPage } from '../request-details/request-details';
   templateUrl: 'request-history.html',
 })
 export class RequestHistoryPage {
-  storage:Storage;
+  //storage:Storage;
   clientid:string;
   state = 'Completed';
   createdate:string;
@@ -28,16 +28,13 @@ export class RequestHistoryPage {
   }];
 
   constructor(public navCtrl: NavController, public navParams: NavParams,private requestProvider:RequestProvider,
-              public alrtCtrl:AlertController,storage:Storage,public modalCtrl:ModalController) {
-
-                this.storage = storage;  
+              public alrtCtrl:AlertController,private storage:Storage,private modalCtrl:ModalController) {
+               
   }
 
-  
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad AllRequestPage');
+  ionViewWillEnter(){
     this.storage.get('name').then(name=>{
+                  
                   
                   this.requestProvider.getRequests(this.state,name).subscribe(requests=>{
                       this.requests=requests;
@@ -45,7 +42,10 @@ export class RequestHistoryPage {
                   });
                   
       });
-    
+  }
+
+  ionViewDidLoad() {
+    console.log('ionViewDidLoad AllRequestPage');
     
   }
 

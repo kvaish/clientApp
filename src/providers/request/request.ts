@@ -34,7 +34,7 @@ export class RequestProvider {
 
   updateRequest(id:any){
     
-    return this.http.get('http://localhost:3000/updateRequest/'+id).map(res=>res.json());
+    return this.http.get('http://10.100.1.4:3000/updateRequest/'+id).map(res=>res.json());
   }
   
   showPopup(title, text) {

@@ -92,7 +92,7 @@ export class HomePage {
     this.geolocation.getCurrentPosition({enableHighAccuracy:true, timeout: 5000}).then((position) => {
  
       let location = new LatLng(position.coords.latitude, position.coords.longitude);
-        //let location = new LatLng(-34.9290,138.6010);
+         //location = new LatLng(-34.9290,138.6010);
         this.address = location;
         this.map = new GoogleMap('map', {
           'center': location,
@@ -130,7 +130,14 @@ export class HomePage {
             this.marker = marker;
             this.geocoder.reverseGeocode(position.coords.latitude, position.coords.longitude).then((res: NativeGeocoderReverseResult) => {
               //let input= document.getElementById("address") as HTMLInputElement;
-              let msg = res.houseNumber+', '+ res.street+', '+ res.city+', '+ res.district+', '+ res.countryName;
+              let msg;
+              for (var v in res) // for acts as a foreach  
+              {  
+                if(res[v] != '' || res[v] != undefined || res[v] != 'undefined'){
+                  msg += res[v]+', ';
+                }
+              }  
+              //msg = res.houseNumber+', '+ res.street+', '+ res.city+', '+ res.district+', '+ res.countryName;
               this.places.place = msg;
               //this.addressString = msg;
             });
@@ -141,8 +148,16 @@ export class HomePage {
                   this.address = LatLng;
                   this.geocoder.reverseGeocode(LatLng.lat, LatLng.lng).then((res: NativeGeocoderReverseResult) => {
                   //let input= document.getElementById("displayAddress") as HTMLInputElement;
-                  let msg = res.houseNumber+', '+ res.street+', '+ res.city+', '+ res.district+', '+ res.countryName;
+                  //let msg = res.houseNumber+', '+ res.street+', '+ res.city+', '+ res.district+', '+ res.countryName;
                   //input.value = msg;
+                  let msg;
+                  for (var v in res) // for acts as a foreach  
+                  {  
+                    if(res[v] != '' || res[v] != undefined || res[v] != 'undefined'){
+                      msg += res[v]+', ';
+                    }
+                  }  
+                  alert(msg);
                   this.places.place = msg;
                   //alert(msg);
                 });
@@ -188,11 +203,13 @@ export class HomePage {
   showAddressModal () {
     //alert('called');
     this.map.setClickable(false);
-    let modal = this.modalCtrl.create(AutocompletePage);
+    let modal = this.modalCtrl.create(AutocompletePage,{search: this.places.place});
     //let me = this;
     modal.onDidDismiss(data => {
+      //alert(typeof(data));
       this.places.place = data;
-      if(this.places.place != ''){
+      if(data){
+        //alert('if called');
         this.getGeocode(this.places.place);
         this.map.setClickable(true);
       }

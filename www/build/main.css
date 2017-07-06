@@ -30541,6 +30541,18 @@ ion-label {
   color: #757575;
 }
 
+ion-modal {
+  /* left: 0; */
+  /* top: 0; */
+  margin: 110px auto;
+  position: static;
+  position: relative;
+  display: block;
+  width: 70%;
+  height: 50%;
+  contain: strict;
+}
+
 page-autocomplete ion-modal {
   /* left: 0; */
   /* top: 0; */
