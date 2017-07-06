@@ -1,5 +1,5 @@
-import { Component, NgZone } from '@angular/core';
-import { IonicPage, ViewController } from 'ionic-angular';
+import { Component, NgZone, ViewChild } from '@angular/core';
+import { IonicPage, ViewController, NavParams } from 'ionic-angular';
 //import { GoogleMap, GoogleMapsEvent, LatLng, MarkerOptions, Marker, GoogleMapsAnimation } from '@ionic-native/google-maps';
 
 /**
@@ -16,19 +16,25 @@ declare var google;
 })
 
 export class AutocompletePage {
+  @ViewChild('mainSearchbar') searchBar: any;
   autocompleteItems;
   autocomplete;
   service = new google.maps.places.AutocompleteService();
 
-  constructor (public viewCtrl: ViewController, private zone: NgZone) {
+  constructor (public viewCtrl: ViewController, private zone: NgZone, private navParam: NavParams) {
     this.autocompleteItems = [];
     this.autocomplete = {
-      query: ''
+      query: this.navParam.get('search')
     };
+  }
+  ionViewDidEnter() {
+    setTimeout(() => {
+      this.searchBar.setFocus();
+    }, 150);
   }
 
   dismiss() {
-    this.viewCtrl.dismiss();
+    this.viewCtrl.dismiss(this.autocomplete.query);
   }
 
   chooseItem(item: any) {

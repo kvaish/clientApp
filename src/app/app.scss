@@ -22,3 +22,15 @@ ion-header{
    .card-header .toolbar-title{ color: #5d5d5d;}
   // .card-header button{ color: #23cad5;}
   ion-label{ color: #757575; }
+
+  ion-modal {
+    /* left: 0; */
+    /* top: 0; */
+    margin: 110px auto;
+    position: static;
+    position: relative;
+    display: block;
+    width: 70%;
+    height: 50%;
+    contain: strict;
+  }

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef } from '@angular/core';
 import { App ,IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { RequestProvider } from '../../providers/request/request';
 import { DatePicker } from '@ionic-native/date-picker';
@@ -16,7 +16,7 @@ import {Storage} from '@ionic/Storage';
   templateUrl: 'create-request.html',
 })
 export class CreateRequestPage {
-  storage:Storage;
+  //storage:Storage;
   request:{
     reqtype:string,
     actype:string,
@@ -34,8 +34,8 @@ export class CreateRequestPage {
     clientid:string;
 
   constructor(private app: App, private datePicker: DatePicker, public navCtrl: NavController, public alertCtrl: AlertController,
-              public navParams: NavParams,private requestProvider:RequestProvider,storage:Storage) {
-                this.storage = storage;
+              public navParams: NavParams,private requestProvider:RequestProvider,private storage:Storage, private element: ElementRef) {
+                //this.storage = storage;
                 this.storage.get('name').then(name=>{
                   this.clientid = name;
                   
@@ -45,10 +45,12 @@ export class CreateRequestPage {
   }
 
   ionViewDidLoad() {
-
     console.log('ionViewDidLoad RequestPage');
-
   }
+
+  ngOnInit(): void {
+		this.adjust();
+	}
 
   logRequest(){
     if(this.date == 'now'){
@@ -94,10 +96,18 @@ export class CreateRequestPage {
         //let input:any = document.getElementById("date") as HTMLInputElement;
         //input.value = date;
         this.date = date;
-        
       },
       err => console.log('Error occurred while getting date: ', err)
     );
   }
   
+  adjust(): void {
+		let ta = this.element.nativeElement.querySelector("textarea");
+		
+		if (ta) {
+			ta.style.overflow = "hidden";
+			ta.style.height = "auto";
+			ta.style.height = ta.scrollHeight + "px";
+		}
+	}
 }
