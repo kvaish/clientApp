@@ -111,32 +111,25 @@ export class HomePage {
         });
         //this.map.setClickable(false);
         this.map.on(GoogleMapsEvent.MAP_READY).subscribe(() => {
-          let markerOptions: MarkerOptions = {
+          /*let markerOptions: MarkerOptions = {
               position: location,
               draggable: true,
               animation: GoogleMapsAnimation.DROP,
               icon: 'file:///android_asset/www/assets/images/icon-green.png',
           };
-          // this.marker = new Marker({
-          //   map : this.map,
-          //   position: location,
-          //   //icon: '../../assets/images/icon-green.png',
-          //   animation: GoogleMapsAnimation.DROP,
-          //   draggable: true
-          // });
           
           //this.marker.setVisible(true);
           this.map.addMarker(markerOptions).then((marker: Marker) => {
             this.marker = marker;
             this.geocoder.reverseGeocode(position.coords.latitude, position.coords.longitude).then((res: NativeGeocoderReverseResult) => {
-              //let input= document.getElementById("address") as HTMLInputElement;
-              let msg;
-              for (var v in res) // for acts as a foreach  
-              {  
-                if(res[v] != '' || res[v] != undefined || res[v] != 'undefined'){
-                  msg += res[v]+', ';
-                }
-              }  
+               
+              let msg = [
+                res.houseNumber+", " || "",
+                res.street+", " || "",
+                res.city+", " || "",
+                res.district+", " || "",
+                res.postalCode+", " || "",
+                res.countryName+", " || ""];
               //msg = res.houseNumber+', '+ res.street+', '+ res.city+', '+ res.district+', '+ res.countryName;
               this.places.place = msg;
               //this.addressString = msg;
@@ -147,23 +140,41 @@ export class HomePage {
                   //alert(JSON.stringify(LatLng));
                   this.address = LatLng;
                   this.geocoder.reverseGeocode(LatLng.lat, LatLng.lng).then((res: NativeGeocoderReverseResult) => {
-                  //let input= document.getElementById("displayAddress") as HTMLInputElement;
-                  //let msg = res.houseNumber+', '+ res.street+', '+ res.city+', '+ res.district+', '+ res.countryName;
-                  //input.value = msg;
-                  let msg;
-                  for (var v in res) // for acts as a foreach  
-                  {  
-                    if(res[v] != '' || res[v] != undefined || res[v] != 'undefined'){
-                      msg += res[v]+', ';
-                    }
-                  }  
+                  let msg = [
+                    res.houseNumber+", " || "",
+                    res.street+", " || "",
+                    res.city+", " || "",
+                    res.district+", " || "",
+                    res.postalCode+", " || "",
+                    res.countryName+", " || ""];
                   alert(msg);
                   this.places.place = msg;
                   //alert(msg);
                 });
               });
             });
-          });
+          });*/
+
+          this.map.addEventListener(GoogleMapsEvent.CAMERA_CHANGE).subscribe(data => {
+            this.map.getCameraPosition().then((camera : CameraPosition) => {
+              //let x = camera.keys()
+              let y = JSON.parse( JSON.stringify( camera.target) );
+              
+              this.geocoder.reverseGeocode(y.lat, y.lng).then((res: NativeGeocoderReverseResult) => { 
+                //alert(JSON.stringify(res));
+                let msg = '';
+                let arr = [ 'houseNumber', 'street', 'city', 'district', 'postalCode', 'countryName' ];
+                for (var v in arr){ 
+                  if(res[arr[v]]){
+                    msg += res[arr[v]]+', ';
+                  }
+                }
+                msg = msg.slice(0, -2);
+                //alert(msg)
+                this.places.place = msg;
+              });
+            })
+          })
         });
     }, (err) => {
       console.log('Error '+ err.message);
@@ -194,8 +205,8 @@ export class HomePage {
   createRequest(){
     //console.log(this.address);
     if(this.map) {
-      this.map.setClickable(false);
-      this.nav.push('CreateRequestPage',{'coordinates': this.address, 'address': this.places.place});
+      //this.map.setClickable(false);
+      this.nav.push('CreateRequestPage',{'coordinates': this.address, 'address': this.places.place})
     }
     
   }
@@ -223,13 +234,7 @@ export class HomePage {
     this.geocoder.forwardGeocode(data).then((res: NativeGeocoderForwardResult) => {
       //alert(res);
       this.address = new LatLng(parseFloat(res.latitude), parseFloat(res.longitude));
-      //alert(this.address);
-      // let markerOptions: any = {
-      //         position: point,
-      //         draggable: true,
-      //         animation: GoogleMapsAnimation.DROP,
-      //         icon: 'assets/icon/marker.png'
-      //       };
+      
       let position: CameraPosition = {
         target: this.address,
         zoom: 17,
@@ -237,8 +242,6 @@ export class HomePage {
         bearing: 50
       };
 
-      //this.map.addMarker(markerOptions).then((marker: Marker) => alert('success'));
-      this.marker.setPosition(this.address);
       this.map.moveCamera(position);
       //this.map.setClickable(true);
     });

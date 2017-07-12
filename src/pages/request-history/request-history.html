@@ -88,7 +88,7 @@
   
 </ion-grid>
 </ion-list>-->
-<ion-card *ngFor="let request of requests  " class="card">
+<!--<ion-card *ngFor="let request of requests  " class="card">
   <header class="card-header">
     <p class="details-header">Request Type:{{request.reqtype }}</p>
   </header>
@@ -99,5 +99,27 @@
     <p style="font-weight: bold;">Job Status</p><p>{{request.status}}</p>
     <button ion-button (click)="showRequestDetails(request)">Details</button>
   </ion-item>
+</ion-card>-->
+<ion-card *ngFor="let request of requests">
+
+  <img src="file:///android_asset/www/assets/images/map.png">
+  <ion-item>
+    <ion-icon name="calendar" item-left large ></ion-icon>
+    <h2>Date of Service</h2>
+    <p>{{request.date}}</p>
+  </ion-item>
+  <ion-item>
+    <ion-icon name="pricetag" item-left large ></ion-icon>
+    <h2>Status</h2>
+    <p>{{request.status}}</p>
+  </ion-item>
+  <ion-item>
+    <span item-left>{{request.addressString}}</span>
+    <button ion-button icon-left clear item-end (click)="showRequestDetails(request)">
+      <ion-icon name="navigate"></ion-icon>
+      Track
+    </button>
+  </ion-item>
+
 </ion-card>
 </ion-content>

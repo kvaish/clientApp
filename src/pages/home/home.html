@@ -49,6 +49,7 @@
     <!--//<ion-input [(ngModel)]="displayAddress" id="displayAdress" type="text" value="" placeholder="Enter Address"></ion-input>-->
     <ion-input (focus)="showAddressModal()" [(ngModel)]="places.place" type="text" placeholder="Enter Address"></ion-input>
   </ion-item>
+  <div id="centerMarker"></div>
     <ion-fab right bottom padding>
       <button ion-fab (click)="createRequest()"><ion-icon name="md-add"></ion-icon></button>
     </ion-fab>

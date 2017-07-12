@@ -1,14 +1,14 @@
 webpackJsonp([3],{
 
-/***/ 286:
+/***/ 288:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__login__ = __webpack_require__(292);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LoginPageModule", function() { return LoginPageModule; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__home_tab__ = __webpack_require__(297);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HomeTabPageModule", function() { return HomeTabPageModule; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -18,42 +18,34 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-//import {IonicStorageModule} from '@ionic/Storage';
-var LoginPageModule = (function () {
-    function LoginPageModule() {
+//import { CreateRequestPage } from '../create-request/create-request';
+var HomeTabPageModule = (function () {
+    function HomeTabPageModule() {
     }
-    return LoginPageModule;
+    return HomeTabPageModule;
 }());
-LoginPageModule = __decorate([
+HomeTabPageModule = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["a" /* NgModule */])({
         declarations: [
-            __WEBPACK_IMPORTED_MODULE_2__login__["a" /* LoginPage */],
+            __WEBPACK_IMPORTED_MODULE_2__home_tab__["a" /* HomeTabPage */],
         ],
         imports: [
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__login__["a" /* LoginPage */]),
-        ],
-        exports: [
-            __WEBPACK_IMPORTED_MODULE_2__login__["a" /* LoginPage */]
-        ],
-        providers: [
-            __WEBPACK_IMPORTED_MODULE_2__login__["a" /* LoginPage */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__home_tab__["a" /* HomeTabPage */]),
         ]
     })
-], LoginPageModule);
+], HomeTabPageModule);
 
-//# sourceMappingURL=login.module.js.map
+//# sourceMappingURL=home-tab.module.js.map
 
 /***/ }),
 
-/***/ 292:
+/***/ 297:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_auth_service_auth_service__ = __webpack_require__(104);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_Storage__ = __webpack_require__(48);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LoginPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HomeTabPage; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -65,72 +57,30 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
-
-
-//import { RegisterPage } from '../register/register';
 /**
- * Generated class for the LoginPage page.
+ * Generated class for the HomeTabPage tabs.
  *
- * See http://ionicframework.com/docs/components/#navigation for more info
- * on Ionic pages and navigation.
+ * See https://angular.io/docs/ts/latest/guide/dependency-injection.html for
+ * more info on providers and Angular DI.
  */
-var LoginPage = (function () {
-    function LoginPage(nav, auth, alertCtrl, loadingCtrl, storage) {
-        this.nav = nav;
-        this.auth = auth;
-        this.alertCtrl = alertCtrl;
-        this.loadingCtrl = loadingCtrl;
-        this.storage = storage;
+var HomeTabPage = (function () {
+    function HomeTabPage(navCtrl) {
+        this.navCtrl = navCtrl;
+        this.homeRoot = 'HomePage';
+        this.onGoingRequestsRoot = 'OnGoingRequestsPage';
+        this.requestHistoryRoot = 'RequestHistoryPage';
     }
-    LoginPage.prototype.createAccount = function () {
-        this.nav.push('RegisterPage');
-    };
-    LoginPage.prototype.login = function () {
-        var _this = this;
-        var user = {
-            email: this.email,
-            password: this.password
-        };
-        this.auth.login(user).subscribe(function (data) {
-            _this.storage.set('name', data.username);
-            if (data.username) {
-                if (data != 'err') {
-                    _this.showLoading();
-                    _this.nav.setRoot('HomeTabPage');
-                }
-                else {
-                    _this.showError('Failed');
-                }
-            }
-        }, function (err) { return console.log(err); });
-    };
-    LoginPage.prototype.showLoading = function () {
-        this.loading = this.loadingCtrl.create({
-            content: 'Please wait...',
-            dismissOnPageChange: true
-        });
-        this.loading.present();
-    };
-    LoginPage.prototype.showError = function (text) {
-        var alert = this.alertCtrl.create({
-            title: '<b>' + 'Bummer!!' + '<b>' + '<br>',
-            subTitle: 'Incorrect Username and Password.' + '<br>' + 'Click ' + '<b>' + 'OK' + '</b>' + ' to go back to the Login Page.',
-            buttons: ['OK']
-        });
-        alert.present(prompt);
-    };
-    return LoginPage;
+    return HomeTabPage;
 }());
-LoginPage = __decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* IonicPage */])(),
+HomeTabPage = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_5" /* Component */])({
-        selector: 'page-login',template:/*ion-inline-start:"C:\Users\svohra\Desktop\fld\clientApp\src\pages\login\login.html"*/'<!--\n\n  Generated template for the LoginPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-content class="login-content" padding>\n\n  <!--<ion-row class="logo-row">\n\n    <ion-col></ion-col>\n\n    <ion-col width-67>\n\n      <img src=""/>\n\n    </ion-col>\n\n    <ion-col></ion-col>\n\n  </ion-row>-->\n\n  <ion-card>\n\n    <ion-card-header class="card-header">\n\n    <ion-title>\n\n      Login\n\n    </ion-title>\n\n      \n\n    </ion-card-header>\n\n  <div class="login-box">\n\n    <form #registerForm="ngForm" ngSubmit="login()">\n\n      <ion-row>\n\n        <ion-col>\n\n          <ion-list inset>\n\n            \n\n            <ion-item>\n\n              <ion-label floating>Username/Email</ion-label>\n\n              <ion-input type="email"   name="email" [(ngModel)]="email" required></ion-input>\n\n            </ion-item>\n\n            \n\n            <ion-item>\n\n              <ion-label floating>Password</ion-label>\n\n              <ion-input type="password"  name="password" [(ngModel)]="password" required></ion-input>\n\n            </ion-item>\n\n            \n\n          </ion-list>\n\n        </ion-col>\n\n      </ion-row>\n\n      \n\n      <ion-row>\n\n        <ion-col class="signup-col">\n\n          <ion-buttons start>\n\n            <button ion-button class="register-btn"  type="button" clear (click)="createAccount()">Create New Account</button>\n\n          </ion-buttons>\n\n        </ion-col>\n\n          <ion-buttons end>\n\n            <button ion-button icon-only round large clear type="submit"  [disabled]="!registerForm.form.valid" (click)="login()">\n\n              <ion-icon name="md-log-in"></ion-icon>\n\n            </button>\n\n          </ion-buttons>\n\n          \n\n          \n\n        \n\n      </ion-row>\n\n      \n\n    </form>\n\n  </div>\n\n  </ion-card>\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\svohra\Desktop\fld\clientApp\src\pages\login\login.html"*/,
+        selector: 'page-home-tab',template:/*ion-inline-start:"D:\clientApp\src\pages\home-tab\home-tab.html"*/'\n\n<ion-tabs>\n\n    <ion-tab [root]="homeRoot" tabTitle="Create request" tabIcon="md-add"></ion-tab>\n\n    <ion-tab [root]="onGoingRequestsRoot" tabTitle="On Going Requests" tabIcon="md-sync"></ion-tab>\n\n    <ion-tab [root]="requestHistoryRoot" tabTitle="Request History" tabIcon="md-time"></ion-tab>\n\n</ion-tabs>\n\n'/*ion-inline-end:"D:\clientApp\src\pages\home-tab\home-tab.html"*/
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */], __WEBPACK_IMPORTED_MODULE_2__providers_auth_service_auth_service__["a" /* AuthServiceProvider */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* AlertController */],
-        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* LoadingController */], __WEBPACK_IMPORTED_MODULE_3__ionic_Storage__["b" /* Storage */]])
-], LoginPage);
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* IonicPage */])(),
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */]])
+], HomeTabPage);
 
-//# sourceMappingURL=login.js.map
+//# sourceMappingURL=home-tab.js.map
 
 /***/ })
 

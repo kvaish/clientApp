@@ -4,6 +4,7 @@ import { RequestProvider } from '../../providers/request/request';
 import { AlertController } from 'ionic-angular';
 import { Storage } from '@ionic/Storage';
 import { RequestDetailsPage } from '../request-details/request-details';
+import { NativeGeocoder, NativeGeocoderReverseResult } from '@ionic-native/native-geocoder';
 
 
 //import { ActiveRequestsPage } from '../active-requests/active-requests';
@@ -33,11 +34,12 @@ export class OnGoingRequestsPage {
     reqtype:string,
     phone:number,
     reqdesc:string,
-    status:string
+    status:string,
+    addressString:string
   }];
-
+ 
   constructor(public navCtrl: NavController, public navParams: NavParams,private requestProvider:RequestProvider,
-              public alrtCtrl:AlertController,storage:Storage,public modalCtrl:ModalController) {
+              public alrtCtrl:AlertController,storage:Storage,public modalCtrl:ModalController, public geocoder:NativeGeocoder) {
 
                 this.storage = storage;  
   }
@@ -46,18 +48,21 @@ export class OnGoingRequestsPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad AllRequestPage');
-    this.storage.get('name').then(name=>{
-                  
-                  this.requestProvider.getRequests(this.state,name).subscribe(requests=>{
-                      this.requests=requests;
-      
-                  });
-                  
-      });
-    
     
   }
 
+  ionViewWillEnter(){
+    this.storage.get('name').then(name=>{
+      this.requestProvider.getRequests(this.state,name).subscribe(requests=>{
+        this.requests=requests;
+        for(var request in this.requests) { 
+          this.getLocation(this.requests[request]) 
+        }  
+      });       
+       
+    });
+    
+  }
   showRequestDetails(request){
 
     let modal = this.modalCtrl.create(RequestDetailsPage,{'request':request});
@@ -132,6 +137,26 @@ export class OnGoingRequestsPage {
     });
     this.navCtrl.parent.parent.setRoot('LoginPage');
     
+  }
+
+
+  getLocation(request){
+    
+    this.geocoder.reverseGeocode(request.address.geometry.coordinates.lat,request.address.geometry.coordinates.lng).then((res: NativeGeocoderReverseResult) => {
+      let msg ='';
+      let arr = [ 'houseNumber', 'street', 'city', 'district', 'postalCode', 'countryName' ];
+      for (var v in arr){ 
+        if(res[arr[v]]){
+           msg += res[arr[v]]+', ';
+        }
+      }
+      msg = msg.slice(0, -2);
+      if(msg.length > 25)
+        msg = msg.substring(0, 25)+'...';
+      //alert(msg)
+      request.addressString= msg;
+    });
+
   }
  
 }

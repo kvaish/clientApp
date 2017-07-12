@@ -30519,14 +30519,7 @@ ion-navbar .toolbar-background-md {
 }
 
 ion-navbar .toolbar-title {
-  text-align: center;
   color: white;
-}
-
-ion-modal {
-  height: 70% !important;
-  width: 80% !important;
-  margin: 56px !important;
 }
 
 .card-header {
@@ -30539,30 +30532,6 @@ ion-modal {
 
 ion-label {
   color: #757575;
-}
-
-ion-modal {
-  /* left: 0; */
-  /* top: 0; */
-  margin: 110px auto;
-  position: static;
-  position: relative;
-  display: block;
-  width: 70%;
-  height: 50%;
-  contain: strict;
-}
-
-page-autocomplete ion-modal {
-  /* left: 0; */
-  /* top: 0; */
-  margin: 110px auto;
-  position: static;
-  position: relative;
-  display: block;
-  width: 70%;
-  height: 50%;
-  contain: strict;
 }
 
 page-create-request .radio-icon {
@@ -30643,16 +30612,12 @@ ion-app._gmaps_cdv_ .nav-decor {
 }
 
 page-home #map {
-  height: 100%;
-}
-
-page-home #map_canvas {
   width: 100%;
   height: 100%;
   transition: opacity 150ms ease-in;
 }
 
-page-home #map_canvas.show-map {
+page-home #map.show-map {
   opacity: 1;
 }
 
@@ -30664,16 +30629,26 @@ page-home .show-map {
   opacity: 1;
 }
 
-page-home ion-modal {
-  /* left: 0; */
-  /* top: 0; */
-  margin: 110px auto;
-  position: static;
-  position: relative;
+page-home #centerMarker {
+  width: 22px;
+  height: 40px;
   display: block;
-  width: 70%;
-  height: 50%;
-  contain: strict;
+  content: ' ';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin: -40px 0 0 -11px;
+  background: url("file:///android_asset/www/assets/images/icon-green.png");
+  background-size: 22px 40px;
+  /* Since I used the HiDPI marker version this compensates for the 2x size */
+  pointer-events: none;
+  /* This disables clicks on the marker. Not fully supported by all major browsers, though */
+}
+
+page-home ion-buttons {
+  -webkit-order: 1;
+  -ms-flex-order: 1;
+  order: 1;
 }
 
 page-on-going-requests ion-row {
@@ -30709,6 +30684,10 @@ page-on-going-requests .alert-head {
 
 page-on-going-requests .request-title {
   background-color: blue !important;
+}
+
+page-on-going-requests ion-card {
+  margin-bottom: 20px !important;
 }
 
 page-request-details ion-navbar.toolbar {

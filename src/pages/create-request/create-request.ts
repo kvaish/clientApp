@@ -1,5 +1,5 @@
 import { Component, ElementRef } from '@angular/core';
-import { App ,IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
+import { App ,IonicPage, NavController, NavParams, AlertController, Tabs } from 'ionic-angular';
 import { RequestProvider } from '../../providers/request/request';
 import { DatePicker } from '@ionic-native/date-picker';
 import {Storage} from '@ionic/Storage';
@@ -53,9 +53,9 @@ export class CreateRequestPage {
 	}
 
   logRequest(){
-    if(this.date == 'now'){
-      alert('date is now');
-      this.date = new Date;
+    if(this.date == 'now' || this.date == 'Now'){
+      //alert('date is now');
+      this.date = new Date();
     }
     console.log(this.date);
     const newRequest={
@@ -68,16 +68,15 @@ export class CreateRequestPage {
       clientid:this.clientid,
       date: this.date
     }
-    
+    //alert(this.date)
     console.log(newRequest);
       this.requestProvider.logRequest(newRequest).subscribe((request)=>{
         
       if(request == "done"){
         this.requestProvider.showPopup('Success', 'Request Logged Successfully!');
-        let nav = this.app.getRootNav();
         this.navCtrl.setRoot(this.navCtrl.getActive().component)
-        nav.push('OnGoingRequestsPage');
-        //this.navCtrl.parent.parent.setRoot('OnGoingRequestsPage');
+        var t: Tabs = this.navCtrl.parent;
+        t.select(1);
       }
       else{
         this.requestProvider.showPopup('Error', 'Could not Log Request, Please try again!');

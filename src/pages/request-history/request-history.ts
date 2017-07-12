@@ -4,6 +4,7 @@ import { RequestProvider } from '../../providers/request/request';
 import { AlertController } from 'ionic-angular';
 import {Storage} from '@ionic/Storage';
 import { RequestDetailsPage } from '../request-details/request-details';
+import { NativeGeocoder, NativeGeocoderReverseResult } from '@ionic-native/native-geocoder';
 /**
  * Generated class for the RequestHistoryPage page.
  *
@@ -24,24 +25,24 @@ export class RequestHistoryPage {
     reqtype:string,
     phone:number,
     reqdesc:string,
-    status:string
+    status:string,
+    addressString:string
   }];
 
   constructor(public navCtrl: NavController, public navParams: NavParams,private requestProvider:RequestProvider,
-              public alrtCtrl:AlertController,private storage:Storage,private modalCtrl:ModalController) {
+              public alrtCtrl:AlertController,private storage:Storage,private modalCtrl:ModalController,public geocoder:NativeGeocoder) {
                
   }
 
   ionViewWillEnter(){
     this.storage.get('name').then(name=>{
-                  
-                  
-                  this.requestProvider.getRequests(this.state,name).subscribe(requests=>{
-                      this.requests=requests;
-      
-                  });
-                  
+      this.requestProvider.getRequests(this.state,name).subscribe(requests=>{
+        this.requests=requests;
+        for(var request in this.requests) {
+          this.getLocation(this.requests[request])
+        }
       });
+    });
   }
 
   ionViewDidLoad() {
@@ -124,5 +125,23 @@ export class RequestHistoryPage {
     this.navCtrl.parent.parent.setRoot('LoginPage');
     
   }
- 
+  
+  getLocation(request){
+    
+    this.geocoder.reverseGeocode(request.address.geometry.coordinates.lat,request.address.geometry.coordinates.lng).then((res: NativeGeocoderReverseResult) => {
+      let msg ='';
+      let arr = [ 'houseNumber', 'street', 'city', 'district', 'postalCode', 'countryName' ];
+      for (var v in arr){ 
+        if(res[arr[v]]){
+           msg += res[arr[v]]+', ';
+        }
+      }
+      msg = msg.slice(0, -2);
+      if(msg.length > 25)
+        msg = msg.substring(0, 25)+'...';
+      //alert(msg)
+      request.addressString= msg;
+    });
+
+  }
 }

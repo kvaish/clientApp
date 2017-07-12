@@ -1,15 +1,14 @@
 webpackJsonp([1],{
 
-/***/ 289:
+/***/ 290:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__request_history__ = __webpack_require__(298);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__on_going_requests_on_going_requests_module__ = __webpack_require__(281);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RequestHistoryPageModule", function() { return RequestHistoryPageModule; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__register__ = __webpack_require__(299);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RegisterPageModule", function() { return RegisterPageModule; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -19,41 +18,37 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-
-var RequestHistoryPageModule = (function () {
-    function RequestHistoryPageModule() {
+var RegisterPageModule = (function () {
+    function RegisterPageModule() {
     }
-    return RequestHistoryPageModule;
+    return RegisterPageModule;
 }());
-RequestHistoryPageModule = __decorate([
+RegisterPageModule = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["a" /* NgModule */])({
         declarations: [
-            __WEBPACK_IMPORTED_MODULE_2__request_history__["a" /* RequestHistoryPage */],
+            __WEBPACK_IMPORTED_MODULE_2__register__["a" /* RegisterPage */],
         ],
         imports: [
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__request_history__["a" /* RequestHistoryPage */]),
-            __WEBPACK_IMPORTED_MODULE_3__on_going_requests_on_going_requests_module__["OnGoingRequestsPageModule"]
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__register__["a" /* RegisterPage */]),
         ],
         exports: [
-            __WEBPACK_IMPORTED_MODULE_2__request_history__["a" /* RequestHistoryPage */],
+            __WEBPACK_IMPORTED_MODULE_2__register__["a" /* RegisterPage */]
         ]
     })
-], RequestHistoryPageModule);
+], RegisterPageModule);
 
-//# sourceMappingURL=request-history.module.js.map
+//# sourceMappingURL=register.module.js.map
 
 /***/ }),
 
-/***/ 298:
+/***/ 299:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_request_request__ = __webpack_require__(211);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_Storage__ = __webpack_require__(48);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__request_details_request_details__ = __webpack_require__(210);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return RequestHistoryPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_auth_service_auth_service__ = __webpack_require__(106);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return RegisterPage; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -66,113 +61,63 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-
-
-
-/**
- * Generated class for the RequestHistoryPage page.
- *
- * See http://ionicframework.com/docs/components/#navigation for more info
- * on Ionic pages and navigation.
- */
-var RequestHistoryPage = (function () {
-    function RequestHistoryPage(navCtrl, navParams, requestProvider, alrtCtrl, storage, modalCtrl) {
-        this.navCtrl = navCtrl;
-        this.navParams = navParams;
-        this.requestProvider = requestProvider;
-        this.alrtCtrl = alrtCtrl;
-        this.storage = storage;
-        this.modalCtrl = modalCtrl;
-        this.state = 'Completed';
+var RegisterPage = (function () {
+    function RegisterPage(nav, auth, alertCtrl) {
+        this.nav = nav;
+        this.auth = auth;
+        this.alertCtrl = alertCtrl;
+        this.createSuccess = false;
     }
-    RequestHistoryPage.prototype.ionViewWillEnter = function () {
+    RegisterPage.prototype.register = function () {
         var _this = this;
-        this.storage.get('name').then(function (name) {
-            _this.requestProvider.getRequests(_this.state, name).subscribe(function (requests) {
-                _this.requests = requests;
-            });
-        });
-    };
-    RequestHistoryPage.prototype.ionViewDidLoad = function () {
-        console.log('ionViewDidLoad AllRequestPage');
-    };
-    RequestHistoryPage.prototype.showRequestDetails = function (request) {
-        var modal = this.modalCtrl.create(__WEBPACK_IMPORTED_MODULE_4__request_details_request_details__["a" /* RequestDetailsPage */], { 'request': request });
-        modal.present();
-        /*let alert = this.alrtCtrl.create({
-          title:'<div class ="request-title">' + "Request Details" + '</div>',
-          subTitle: '<b>' + 'Type: ' + '</b>' + request.reqtype  + '<br><br>' +
-                    '<b>' + 'Description: ' +'</b>' + request.reqdesc + '<br><br>' +
-                    '<b>' + 'Create Date: ' + '</b>' + request.createdate + '<br><br>' +
-                    '<b>' + 'Status: ' + '</b>' + request.status + '<br><br>'+
-                    '<b>' + 'Service Date: ' + '</b>' + request.date  ,
-          buttons:[
-            {
-              text:'Cancel Job',
-              handler:()=>{
-                let alert2 = this.alrtCtrl.create({
-                  title: 'Delete Request!!',
-                  subTitle: 'Are you sure you want to Cancel this Service ?',
-                  buttons:[
-                    {
-                      text: 'No',
-                      role: 'cancel'
-                    },
-                    {
-                      text: 'Yes',
-                      handler:()=>{
-                        this.requestProvider.updateRequest(request._id).subscribe(success=>{
-                          var index = this.requests.indexOf(request,0);
-                          if(index > -1){
-                            this.requests.splice(index,-1);
-                            this.navCtrl.setRoot(this.navCtrl.getActive().component);
-                          }
-                        });
-                      }
-                    }
-                  ]
-                });
-                alert2.present();
-              }
-            },
-            {
-              text:'OK',
-              role: 'cancel'
+        var newUser = {
+            name: this.name,
+            email: this.email,
+            password: this.password,
+            phone: this.phone,
+            address: this.address
+        };
+        this.auth.register(newUser).subscribe(function (user) {
+            if (user == 'done') {
+                var text = 'Congratulations! Time to Login now.';
+                var title = 'Registered Successfully';
+                _this.showPopup(title, text);
+                _this.nav.setRoot('LoginPage');
             }
-          ]
+            else {
+                _this.showPopup('Failed', 'Please Try Again!');
+            }
         });
-        alert.present();*/
     };
-    RequestHistoryPage.prototype.menuOpened = function () {
-    };
-    RequestHistoryPage.prototype.menuClosed = function () {
-    };
-    RequestHistoryPage.prototype.refresh = function () {
-        this.navCtrl.setRoot(this.navCtrl.getActive().component);
-    };
-    /*editRequest(request){
-      this.navCtrl.push(ActiveRequestsPage,{
-        request:request
-      });
-    }*/
-    RequestHistoryPage.prototype.logout = function () {
-        this.storage.clear().then(function () {
-            console.log('Keys have been cleared');
+    RegisterPage.prototype.showPopup = function (title, text) {
+        var _this = this;
+        var alert = this.alertCtrl.create({
+            title: title,
+            subTitle: text,
+            buttons: [
+                {
+                    text: 'OK',
+                    handler: function (data) {
+                        if (_this.createSuccess) {
+                            _this.nav.popToRoot();
+                        }
+                    }
+                }
+            ]
         });
-        this.navCtrl.parent.parent.setRoot('LoginPage');
+        alert.present();
     };
-    return RequestHistoryPage;
+    return RegisterPage;
 }());
-RequestHistoryPage = __decorate([
+RegisterPage = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* IonicPage */])(),
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_5" /* Component */])({
-        selector: 'page-request-history',template:/*ion-inline-start:"C:\Users\svohra\Desktop\fld\clientApp\src\pages\request-history\request-history.html"*/'<!--\n\n  Generated template for the OnGoingRequestsPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-menu [content]="content" (ionOpen)="menuOpened()" (ionClose)="menuClosed()">\n\n \n\n<!-- The side menu title -->\n\n  <ion-header>\n\n    <ion-toolbar color="dark">\n\n      <ion-title>Menu</ion-title>\n\n    </ion-toolbar>\n\n  </ion-header>\n\n  <ion-content>\n\n    <ion-list>\n\n      <!-- remember the `this.pages` object we created in `app.js`?\n\n      // Iterate through, then when clicked, run the associated function\n\n      // passing in the #p <item class=""></item>\n\n      // changed #p to let p instead -->\n\n      <button ion-item *ngFor="let p of pages" (click)="openPage(p)">\n\n        {{p.title}}\n\n      </button>\n\n    </ion-list>\n\n  </ion-content>\n\n \n\n</ion-menu>\n\n<!-- What\'s my root? remember the this.rootPage?-->\n\n<ion-nav id="nav" [root]="rootPage" #content swipe-back-enabled="false"></ion-nav>\n\n<ion-header>\n\n  <ion-navbar>\n\n    <ion-buttons start>\n\n      <button ion-button icon-only menuToggle>\n\n        <ion-icon name="menu"></ion-icon>\n\n      </button>\n\n    </ion-buttons>\n\n    <ion-title>\n\n      Requests History\n\n    </ion-title>\n\n    <ion-buttons end>\n\n      <button ion-button icon-only (click)="logout()">\n\n        <ion-icon name="log-out"></ion-icon>\n\n      </button>\n\n    </ion-buttons>\n\n    \n\n    \n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n\n  <h1>List of All the requests</h1> \n\n  <h4>Filter According to:- {{type}}</h4> <button *ngIf="type != \' \' " ion-button style="float: right;" (click)="refresh()">Clear Filters</button> \n\n  <ion-item>\n\n    <ion-label>Type Of Request</ion-label>\n\n    <ion-select [(ngModel)]="type" name="type" >\n\n      <ion-option>Dry</ion-option>\n\n      <ion-option>Wet</ion-option>\n\n      <button ion-button>Clear Filters</button>\n\n    </ion-select>\n\n  </ion-item><br>\n\n  \n\n    \n\n\n\n<!--<ion-list inset>\n\n<ion-grid>\n\n  <ion-list-header>\n\n  <ion-row >\n\n          <ion-col col-5><ion-title>Request Type</ion-title></ion-col>\n\n          <ion-col><ion-title>Creation Date</div>\n\n          <ion-col col-4><ion-title>Status</ion-title></ion-col>\n\n          <ion-col col-3><ion-title>Details</ion-title></ion-col>\n\n  </ion-row>\n\n  </ion-list-header>\n\n    <ion-row *ngFor="let request of requests | requests : type " text-center>\n\n    \n\n      <ion-col col-5 text-center>{{request.reqtype }}</ion-col>\n\n      <!--<ion-col>{{request.createdate}}</div>\n\n      <ion-col col-4 text-center>{{request.status}}</ion-col>\n\n      <ion-col col-3 text-center>\n\n        <button ion-button icon-only clear (click)="showRequestDetails(request)">\n\n          <ion-icon name="md-more"></ion-icon>\n\n        </button>\n\n        <!--<button ion-button (click)="editRequest(request)">Edit</button>\n\n        \n\n      </ion-col>\n\n    </ion-row>\n\n  \n\n</ion-grid>\n\n</ion-list>-->\n\n<ion-card *ngFor="let request of requests  " class="card">\n\n  <header class="card-header">\n\n    <p class="details-header">Request Type:{{request.reqtype }}</p>\n\n  </header>\n\n  <ion-item>\n\n    \n\n    <p style="font-weight: bold;">Created Date:</p><p>{{request.createdate}}</p><br>\n\n    <p style="font-weight: bold;">Date of Service:</p><p>{{request.date}}</p><br> \n\n    <p style="font-weight: bold;">Job Status</p><p>{{request.status}}</p>\n\n    <button ion-button (click)="showRequestDetails(request)">Details</button>\n\n  </ion-item>\n\n</ion-card>\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\svohra\Desktop\fld\clientApp\src\pages\request-history\request-history.html"*/,
+        selector: 'page-register',template:/*ion-inline-start:"D:\clientApp\src\pages\register\register.html"*/'<!--\n\n  Generated template for the RegisterPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n  <ion-navbar>\n\n    <ion-title>Register</ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n \n\n<ion-content class="login-content" padding>\n\n  <ion-card>\n\n    <ion-card-header class="card-header">\n\n    <ion-title>\n\n      Register Yourself\n\n    </ion-title>\n\n      \n\n    </ion-card-header>\n\n  <div class="login-box">\n\n    \n\n    <form #registerForm="ngForm">\n\n      <ion-row>\n\n        <ion-col>\n\n          <ion-list inset>\n\n\n\n            <ion-item>\n\n              <ion-label floating>Name</ion-label>\n\n              <ion-input type="text"  name="name" [(ngModel)]="name" required></ion-input>\n\n            </ion-item>\n\n            \n\n            <ion-item>\n\n              <ion-label floating>Email</ion-label>\n\n              <ion-input type="text"  name="email" [(ngModel)]="email" required></ion-input>\n\n            </ion-item>\n\n\n\n            <ion-item>\n\n              <ion-label floating>Password</ion-label>\n\n              <ion-input type="password"  name="password" [(ngModel)]="password" required></ion-input>\n\n            </ion-item>\n\n\n\n            <ion-item>\n\n              <ion-label floating>Phone</ion-label>\n\n              <ion-input type="text"  name="phone" [(ngModel)]="phone" required></ion-input>\n\n            </ion-item>\n\n\n\n            <ion-item>\n\n              <ion-label floating>Address</ion-label>\n\n              <ion-textarea [(ngModel)]="address" name="address" rows="3" ></ion-textarea>\n\n            </ion-item>\n\n            \n\n          </ion-list>\n\n        </ion-col>\n\n      </ion-row>\n\n      \n\n      <ion-row>\n\n        <!--<ion-col class="signup-col">\n\n          <button ion-button class="submit-btn" full type="submit" [disabled]="!registerForm.form.valid" (click)="register()">\n\n            <ion-icon name="md-person-add"></ion-icon>\n\n          </button>\n\n        </ion-col>-->\n\n        <ion-fab right middle padding>\n\n          <button ion-fab type="submit" [disabled]="!registerForm.form.valid" (click)="register()"><ion-icon name="md-person-add"></ion-icon></button>\n\n        </ion-fab>\n\n      </ion-row>\n\n      \n\n    </form>\n\n  </div>\n\n  </ion-card>\n\n</ion-content>'/*ion-inline-end:"D:\clientApp\src\pages\register\register.html"*/,
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__providers_request_request__["a" /* RequestProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_request_request__["a" /* RequestProvider */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* AlertController */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_3__ionic_Storage__["b" /* Storage */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__ionic_Storage__["b" /* Storage */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* ModalController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* ModalController */]) === "function" && _f || Object])
-], RequestHistoryPage);
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */], __WEBPACK_IMPORTED_MODULE_2__providers_auth_service_auth_service__["a" /* AuthServiceProvider */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* AlertController */]])
+], RegisterPage);
 
-var _a, _b, _c, _d, _e, _f;
-//# sourceMappingURL=request-history.js.map
+//# sourceMappingURL=register.js.map
 
 /***/ })
 

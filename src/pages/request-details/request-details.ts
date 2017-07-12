@@ -36,18 +36,30 @@ export class RequestDetailsPage {
   address:string;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,public geocoder:NativeGeocoder) {
-     this.request = navParams.get('request');
-     console.log(this.request);
+     
+     
+  }
+
+  ngOnInit(){
+    this.request = this.navParams.get('request');
+     //console.log(this.request.address.geometry.coordinates.lat);
      this.getLocation();
   }
 
   getLocation(){
-    
+    //alert(JSON.stringify(this.request));
     this.geocoder.reverseGeocode(this.request.address.geometry.coordinates.lat,this.request.address.geometry.coordinates.lng).then((res: NativeGeocoderReverseResult) => {
-              //let input= document.getElementById("address") as HTMLInputElement;
-              let msg = res.houseNumber+', '+ res.street+', '+ res.city+', '+ res.district+', '+ res.countryName;
-              this.address= msg;
-            });
+      let msg ='';
+      let arr = [ 'houseNumber', 'street', 'city', 'district', 'postalCode', 'countryName' ];
+      for (var v in arr){ 
+        if(res[arr[v]]){
+           msg += res[arr[v]]+', ';
+        }
+      }
+      msg = msg.slice(0, -2);
+      //alert(msg)
+      this.address= msg;
+    });
 
   }
 
