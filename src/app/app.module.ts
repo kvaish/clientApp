@@ -24,6 +24,7 @@ import {IonicStorageModule} from '@ionic/Storage';
 //import { RequestDetailsPage } from '../pages/request-details/request-details';
 //import {Storage} from '@ionic/Storage';
 import { HomePageModule } from '../pages/home/home.module';
+import { HomePage } from '../pages/home/home';
 import { OnGoingRequestsPageModule } from '../pages/on-going-requests/on-going-requests.module';
 
 
@@ -35,6 +36,7 @@ import { OnGoingRequestsPageModule } from '../pages/on-going-requests/on-going-r
     AccountsPage,
     UpdateProfilePage,
     SettingsPage,
+    
     //AutocompletePage
     //RequestsPipe
   ],
@@ -52,7 +54,8 @@ import { OnGoingRequestsPageModule } from '../pages/on-going-requests/on-going-r
     MyApp,
     AccountsPage,
     UpdateProfilePage,
-    SettingsPage
+    SettingsPage,
+    
     //AutocompletePage
   ],
   providers: [

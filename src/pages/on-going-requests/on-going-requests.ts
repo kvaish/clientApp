@@ -114,13 +114,7 @@ export class OnGoingRequestsPage {
     
   }
 
-  menuOpened(){
-
-  }
-
-  menuClosed(){
-
-  }
+ 
 
   refresh(){
     this.navCtrl.setRoot(this.navCtrl.getActive().component);
