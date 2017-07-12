@@ -30534,6 +30534,12 @@ ion-label {
   color: #757575;
 }
 
+ion-card img {
+  display: block;
+  width: 100%;
+  height: 135px;
+}
+
 page-create-request .radio-icon {
   /* HIDE RADIO */
   visibility: hidden;

@@ -19,7 +19,7 @@ import { NativeGeocoder, NativeGeocoderReverseResult } from '@ionic-native/nativ
 export class RequestHistoryPage {
   //storage:Storage;
   clientid:string;
-  state = 'Completed';
+  state = 'Inactive';
   createdate:string;
   requests:[{
     reqtype:string,

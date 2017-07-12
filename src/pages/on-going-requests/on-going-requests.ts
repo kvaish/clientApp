@@ -139,7 +139,15 @@ export class OnGoingRequestsPage {
     
   }
 
-
+  editRequest(request){
+    this.requestProvider.updateRequest(request._id, request.state , 'Cancelled').subscribe(success=>{
+      var index = this.requests.indexOf(request,0);
+      if(index > -1){
+        this.requests.splice(index,-1);
+        this.navCtrl.setRoot(this.navCtrl.getActive().component);
+      }
+    });
+  }
   getLocation(request){
     
     this.geocoder.reverseGeocode(request.address.geometry.coordinates.lat,request.address.geometry.coordinates.lng).then((res: NativeGeocoderReverseResult) => {
