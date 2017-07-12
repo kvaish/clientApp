@@ -30540,6 +30540,10 @@ ion-card img {
   height: 135px;
 }
 
+ion-header {
+  position: relative;
+}
+
 page-create-request .radio-icon {
   /* HIDE RADIO */
   visibility: hidden;
@@ -30696,6 +30700,10 @@ page-on-going-requests ion-card {
   margin-bottom: 20px !important;
 }
 
+page-on-going-requests ion-content {
+  top: 60px;
+}
+
 page-request-details ion-navbar.toolbar {
   background-color: gray !important;
 }
@@ -30743,4 +30751,8 @@ page-request-history .alert-head {
 
 page-request-history .request-title {
   background-color: blue !important;
+}
+
+page-request-history ion-content {
+  top: 60px;
 }
