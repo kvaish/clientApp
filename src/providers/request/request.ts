@@ -22,19 +22,19 @@ export class RequestProvider {
     return this.http.post('http://10.100.1.4:3000/request',newRequest,{headers:headers}).map(res=>res.json());
   }
 
-  getRequests(status,clientid){
-    console.log(status);
+  getRequests(state,clientid){
+    console.log(state);
     console.log("fhoiewyfoeyroeyrog" +clientid);
-    return this.http.get('http://10.100.1.4:3000/getRequests/'+status+'/'+clientid).map(res=>res.json());
+    return this.http.get('http://10.100.1.4:3000/getRequests/'+state+'/'+clientid).map(res=>res.json());
   }
 
   deleteRequest(id:any){
     return this.http.delete('http://10.100.1.4:3000/deleteRequest/'+id).map(res=>res.json());
   }
 
-  updateRequest(id:any){
+  updateRequest(id:any, state:any, status: any){
     
-    return this.http.get('http://10.100.1.4:3000/updateRequest/'+id).map(res=>res.json());
+    return this.http.get('http://10.100.1.4:3000/updateRequest/'+id+'/'+state+'/'+status).map(res=>res.json());
   }
   
   showPopup(title, text) {
