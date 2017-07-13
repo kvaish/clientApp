@@ -34,7 +34,9 @@ page-create-request {
     .col{padding: 0px}
     .item-radio-checked{ background: #1fb5bf; border-color:darkcyan; }
     .item-radio-checked i, .item-radio-checked p { color: #fff;}
+    .item-radio-checked .label{color: #fff; }
     .item-md.item-block .item-inner { padding-right: 0px; }
     ion-fab{ position: static; float: right;}
     .last { margin-bottom: 0px; padding-top: 5px; }
+    .radio .radio-md{ display: none;}
 }

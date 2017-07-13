@@ -53,7 +53,8 @@ export class AutocompletePage {
       me.autocompleteItems = []; 
       me.zone.run(function () {
         predictions.forEach(function (prediction) {
-          me.autocompleteItems.push(prediction.description);
+          //console.log(prediction)
+          me.autocompleteItems.push({'description': prediction.description, 'place_id': prediction.place_id});
         });
       });
     });

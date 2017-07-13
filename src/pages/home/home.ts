@@ -13,8 +13,7 @@ import {Diagnostic} from '@ionic-native/diagnostic'
 import { NativeGeocoder, NativeGeocoderReverseResult,NativeGeocoderForwardResult } from '@ionic-native/native-geocoder';
 import { AutocompletePage } from '../autocomplete/autocomplete';
 import { LocationAccuracy } from '@ionic-native/location-accuracy';
-
-
+import { GeocoderProvider } from '../../providers/geocoder/geocoder';
 
 @IonicPage() 
 
@@ -46,7 +45,7 @@ export class HomePage {
                private geocoder: NativeGeocoder, private geolocation: Geolocation, 
                private alertCtrl: AlertController, private splashScreen: SplashScreen,
                private statusBar: StatusBar, private nav: NavController, private auth: AuthServiceProvider,
-               private menu: MenuController, private platform: Platform) {}
+               private menu: MenuController, private platform: Platform, private geocoderService: GeocoderProvider,) {}
 
 
   ngOnInit() {
@@ -97,7 +96,6 @@ export class HomePage {
         this.map = new GoogleMap('map', {
           'center': location,
           'backgroundColor': 'white',
-          'disableDefaultUI': true,
           'controls': {
             'compass': true,
             'myLocationButton': true,
@@ -160,18 +158,27 @@ export class HomePage {
               //let x = camera.keys()
               let y = JSON.parse( JSON.stringify( camera.target) );
               
-              this.geocoder.reverseGeocode(y.lat, y.lng).then((res: NativeGeocoderReverseResult) => { 
-                //alert(JSON.stringify(res));
-                let msg = '';
-                let arr = [ 'houseNumber', 'street', 'city', 'district', 'postalCode', 'countryName' ];
-                for (var v in arr){ 
-                  if(res[arr[v]]){
-                    msg += res[arr[v]]+', ';
-                  }
-                }
-                msg = msg.slice(0, -2);
-                //alert(msg)
-                this.places.place = msg;
+              // this.geocoder.reverseGeocode(y.lat, y.lng).then((res: NativeGeocoderReverseResult) => { 
+              //   //alert(JSON.stringify(res));
+              //   let msg = '';
+              //   let arr = [ 'houseNumber', 'street', 'city', 'district', 'postalCode', 'countryName' ];
+              //   for (var v in arr){ 
+              //     if(res[arr[v]]){
+              //       msg += res[arr[v]]+', ';
+              //     }
+              //   }
+              //   msg = msg.slice(0, -2);
+              //   //alert(msg)
+              //   this.places.place = msg;
+              // });
+
+              this.geocoderService.addressForlatLng(y.lat, y.lng)
+                .subscribe((address: string) => {
+                  //msg = address
+                  this.places.place = address
+                }, (error) => {
+                  //alert(error);
+                  console.error(error);
               });
             })
           })
@@ -218,11 +225,11 @@ export class HomePage {
     //let me = this;
     modal.onDidDismiss(data => {
       //alert(typeof(data));
-      this.places.place = data;
+      this.places.place = data.description;
       if(data){
-        //alert('if called');
-        this.getGeocode(this.places.place);
+        //alert(data.place_id);
         this.map.setClickable(true);
+        this.getGeocode(data.place_id);
       }
     });
     
@@ -230,20 +237,24 @@ export class HomePage {
     
   }
 
-  getGeocode(data){
-    this.geocoder.forwardGeocode(data).then((res: NativeGeocoderForwardResult) => {
-      //alert(res);
-      this.address = new LatLng(parseFloat(res.latitude), parseFloat(res.longitude));
-      
-      let position: CameraPosition = {
-        target: this.address,
-        zoom: 17,
-        tilt: 30,
-        bearing: 50
-      };
+  getGeocode(place_id){
+    
+    this.geocoderService.locationForPlace(place_id)
+      .subscribe((point: any) => {
 
-      this.map.moveCamera(position);
-      //this.map.setClickable(true);
-    });
+        //alert(point)
+        
+        let y = JSON.parse( JSON.stringify( point) );
+        //alert(y.lat)
+        let p = new LatLng(y.lat,y.lng)
+        let position: CameraPosition = {
+          target: p,
+          zoom: 17,
+          tilt: 30,
+          bearing: 50
+        };
+        this.map.moveCamera(position);
+      });
+  
   }
 }

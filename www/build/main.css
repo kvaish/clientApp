@@ -30544,6 +30544,12 @@ ion-header {
   position: relative;
 }
 
+.bar-buttons-md {
+  -webkit-order: 1;
+  -ms-flex-order: 1;
+  order: 1;
+}
+
 page-create-request .radio-icon {
   /* HIDE RADIO */
   visibility: hidden;
@@ -30603,6 +30609,10 @@ page-create-request .item-radio-checked i, page-create-request .item-radio-check
   color: #fff;
 }
 
+page-create-request .item-radio-checked .label {
+  color: #fff;
+}
+
 page-create-request .item-md.item-block .item-inner {
   padding-right: 0px;
 }
@@ -30615,6 +30625,10 @@ page-create-request ion-fab {
 page-create-request .last {
   margin-bottom: 0px;
   padding-top: 5px;
+}
+
+page-create-request .radio .radio-md {
+  display: none;
 }
 
 ion-app._gmaps_cdv_ .nav-decor {

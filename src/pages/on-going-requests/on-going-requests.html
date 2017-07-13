@@ -65,7 +65,11 @@
       Cancel
     </button>
   </ion-item>
-  
+  <ion-item *ngIf="request.status == 'Assigned'">
+      <ion-icon name="person" item-left large ></ion-icon>
+      <h2>Mohan Kumar</h2>
+      <p>Service scheduled at 8:pm.</p>
+  </ion-item>
   <ion-item>
     <span item-left>{{request.addressString}}</span>
     <button ion-button icon-left clear item-end (click)="showRequestDetails(request)">
