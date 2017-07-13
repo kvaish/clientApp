@@ -4,7 +4,7 @@ import { UpdateProfilePage } from '../update-profile/update-profile';
 import { AccountsPage } from '../accounts/accounts';
 import { SettingsPage } from '../settings/settings';
 import { Storage } from '@ionic/Storage';
-
+import { GoogleMap} from '@ionic-native/google-maps';
 /**
  * Generated class for the HomeTabPage tabs.
  *
@@ -21,7 +21,8 @@ export class HomeTabPage {
   homeRoot = 'HomePage'
   onGoingRequestsRoot = 'OnGoingRequestsPage'
   requestHistoryRoot = 'RequestHistoryPage'
-  pages: Array<{title: string, component: any}>
+  pages: Array<{title: string, component: any}>;
+   map: GoogleMap;
 
 
   constructor(public navCtrl: NavController,private storage:Storage) {
@@ -39,11 +40,15 @@ export class HomeTabPage {
   }
 
   menuOpened(){
-
+    if(this.map) {
+      this.map.setClickable(false);
+    }
   }
 
   menuClosed(){
-
+    if(this.map) {
+      this.map.setClickable(true);
+    }
   }
 
   logout(){

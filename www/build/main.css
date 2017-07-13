@@ -30511,6 +30511,7 @@ ion-navbar.toolbar {
 ion-header {
   color: #1fb5bf;
   background-color: #1fb5bf !important;
+  position: relative !important;
 }
 
 ion-navbar .toolbar-background-md {
@@ -30694,6 +30695,10 @@ page-on-going-requests .request-title {
 
 page-on-going-requests ion-card {
   margin-bottom: 20px !important;
+}
+
+page-on-going-requests ion-tab {
+  top: auto !important;
 }
 
 page-request-details ion-navbar.toolbar {
