@@ -22,7 +22,7 @@
           <ion-row>
             <ion-col><ion-item>
               <ion-label><i class="fa fa-sun-o"></i><p>Dry</p></ion-label>
-              <ion-radio checked="true" value="Dry"></ion-radio>
+              <ion-radio  value="Dry"></ion-radio>
             </ion-item></ion-col>
             <ion-col><ion-item>
               <ion-label><i class="fa fa-shower"></i><p>Wet</p></ion-label>
@@ -35,11 +35,11 @@
         <ion-list class="innerList" radio-group required [(ngModel)]="actype" name="actype" item-content> <!-- this right here -->
           <h2 >AC Type</h2>
           <ion-row>
-            <ion-col><ion-item>
+            <ion-col col-6><ion-item>
               <ion-label><img src="file:///android_asset/www/assets/images/split.png"><p>Split</p></ion-label>
-              <ion-radio checked="true" value="Split"></ion-radio>
+              <ion-radio  value="Split"></ion-radio>
             </ion-item></ion-col>
-            <ion-col><ion-item>
+            <ion-col col-6><ion-item>
               <ion-label><img src="file:///android_asset/www/assets/images/window.png"><p>Window</p></ion-label>
               <ion-radio value="Window"></ion-radio>
             </ion-item></ion-col>
@@ -47,12 +47,26 @@
         </ion-list>
       </ion-item>
       <ion-item>
-        <ion-list item-content>
+        <ion-list class="innerList"   item-content>
           <h2>Capacity</h2>
-          <ion-range min="0" max="8" step="0.5" [(ngModel)]="capacity" name="capacity" color="primary" pin="true">
+          <ion-range min="0" max="4" step="0.5" [(ngModel)]="capacity" name="capacity" color="primary" pin="true">
             <ion-label range-left>0</ion-label>
-            <ion-label range-right>8</ion-label>
+            <ion-label range-right>4</ion-label>
           </ion-range>
+          <!--<ion-row >
+            <ion-col col-4 ><ion-item >
+              <ion-label>&lt;1<p>Tons</p></ion-label>
+              <ion-radio value="<1"></ion-radio>
+            </ion-item></ion-col>
+            <ion-col col-4><ion-item>
+              <ion-label>1-2<p>Tons</p></ion-label>
+              <ion-radio value="1-2"></ion-radio>
+            </ion-item></ion-col>
+            <ion-col col-4><ion-item>
+              <ion-label>&gt;2<p>Tons</p></ion-label>
+              <ion-radio value=">2"></ion-radio>
+            </ion-item></ion-col>
+          </ion-row>-->
         </ion-list>
       </ion-item>
       <ion-item>
@@ -61,7 +75,7 @@
           <ion-row>
               <ion-col><ion-item>
                 <ion-label><i class="fa fa-sun-o"></i><p>Now</p></ion-label>
-                <ion-radio checked="true" value="Now"></ion-radio>
+                <ion-radio  value="Now"></ion-radio>
               </ion-item></ion-col>
               <ion-col><ion-item>
                 <ion-label><i class="fa fa-clock-o"></i><p>Later</p></ion-label>

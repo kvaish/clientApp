@@ -46,3 +46,7 @@ ion-header {
     position: relative; 
 }
 
+.bar-buttons-md {
+    -webkit-order: 1;
+    -ms-flex-order: 1;
+    order: 1;}

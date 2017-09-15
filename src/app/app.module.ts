@@ -26,6 +26,8 @@ import {IonicStorageModule} from '@ionic/Storage';
 import { HomePageModule } from '../pages/home/home.module';
 import { HomePage } from '../pages/home/home';
 import { OnGoingRequestsPageModule } from '../pages/on-going-requests/on-going-requests.module';
+import { GeocoderProvider } from '../providers/geocoder/geocoder';
+import { MapserviceProvider } from '../providers/mapservice/mapservice';
 
 
 //import { RequestsPipe } from '../pipes/requests/requests';
@@ -71,7 +73,9 @@ import { OnGoingRequestsPageModule } from '../pages/on-going-requests/on-going-r
     DatePicker,
     LocationAccuracy,   
     IonicStorageModule,
-    Diagnostic
+    Diagnostic,
+    GeocoderProvider,
+    MapserviceProvider
 
     //RequestsPipe
   ],
