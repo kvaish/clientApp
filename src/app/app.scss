@@ -16,9 +16,37 @@
 // automatically applied to the <body> element in the app.
 ion-header{
     color: #1fb5bf;
+    background-color: #1fb5bf !important;
+    position: relative !important;
 }
 
-.card-header{ background: #2a2a2a; }
+ion-navbar .toolbar-background-md{
+    background-color: #1fb5bf;
+    color: white;
+}
+ion-navbar .toolbar-title{
+    color: white;
+}
+
+.card-header{ 
+    background: #2a2a2a; 
+}
    .card-header .toolbar-title{ color: #5d5d5d;}
   // .card-header button{ color: #23cad5;}
   ion-label{ color: #757575; }
+
+  ion-card img {
+        display: block;
+        width: 100%;
+        height: 135px;
+    }
+
+
+ion-header {
+    position: relative; 
+}
+
+.bar-buttons-md {
+    -webkit-order: 1;
+    -ms-flex-order: 1;
+    order: 1;}

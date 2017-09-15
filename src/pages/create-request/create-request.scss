@@ -3,5 +3,40 @@ page-create-request {
        visibility: hidden; /* Makes input not-clickable */
         position: absolute;
     }
-   
+    form {
+        border: 1px solid #ccc;
+    }
+    ion-list{
+        width: 100%;
+    }
+    ion-row{
+        border: 1px solid #1fb5bf;
+    }
+    .item-radio.item-md ion-label{
+        margin-left: 25px;
+    }
+    .range-md.range-has-pin {
+     padding-top: 0px;
+    }
+    h2{
+        margin-bottom: 1rem !important;
+        margin-top: 1.8rem !important;
+        font-weight: 500; 
+        color: #424242;
+    }
+    .innerList .item-md.item-block .item-inner{
+        border:none;
+    }
+    .item-md{
+        padding-left: 0px;
+    }
+    .innerList .item-block{ text-align: center;}
+    .col{padding: 0px}
+    .item-radio-checked{ background: #1fb5bf; border-color:darkcyan; }
+    .item-radio-checked i, .item-radio-checked p { color: #fff;}
+    .item-radio-checked .label{color: #fff; }
+    .item-md.item-block .item-inner { padding-right: 0px; }
+    ion-fab{ position: static; float: right;}
+    .last { margin-bottom: 0px; padding-top: 5px; }
+    .radio .radio-md{ display: none;}
 }

@@ -13,14 +13,20 @@ export class RegisterPage {
     password:string
   }
   createSuccess = false;
+  name:string;
   email:string;
   password:string;
+  phone:number;
+  address:string;
   constructor(private nav: NavController, private auth: AuthServiceProvider, private alertCtrl: AlertController) { }
  
   register(){
     const newUser = {
+      name:this.name,
       email:this.email,
-      password:this.password
+      password:this.password,
+      phone:this.phone,
+      address:this.address
     }
     this.auth.register(newUser).subscribe((user)=>{
       if(user == 'done'){

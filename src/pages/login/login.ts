@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, AlertController, LoadingController, Loading, IonicPage } from 'ionic-angular';
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
+import { Storage } from '@ionic/Storage'; 
 //import { RegisterPage } from '../register/register';
 /**
  * Generated class for the LoginPage page.
@@ -14,12 +15,15 @@ import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
   templateUrl: 'login.html',
 })
 export class LoginPage {
-
+  private storage:Storage;
   loading: Loading;
   email:string;
   password:string;
  
-  constructor(private nav: NavController, private auth: AuthServiceProvider, private alertCtrl: AlertController, private loadingCtrl: LoadingController) { 
+ 
+  constructor(private nav: NavController, private auth: AuthServiceProvider, private alertCtrl: AlertController,
+              private loadingCtrl: LoadingController,storage:Storage) { 
+                this.storage = storage;
   }
 
   public createAccount() {
@@ -32,12 +36,17 @@ export class LoginPage {
       password:this.password
     }
     this.auth.login(user).subscribe((data)=>{
-      if(data != 'err'){
-        this.showLoading();
-        this.nav.setRoot('HomeTabPage');
-      }
-      else{
-        this.showError('Failed');
+     
+    this.storage.set('name',data.username);
+      if(data.username){
+        if(data != 'err'){
+
+          this.showLoading();
+          this.nav.setRoot('HomeTabPage');
+        }
+        else{
+          this.showError('Failed');
+        }
       }
     },(err)=>console.log(err));
   }
@@ -51,11 +60,11 @@ export class LoginPage {
   }
  
   showError(text) {
-    this.loading.dismiss();
+    
  
     let alert = this.alertCtrl.create({
-      title: 'Fail',
-      subTitle: text,
+      title: '<b>' +'Bummer!!' + '<b>' + '<br>',
+      subTitle: 'Incorrect Username and Password.' + '<br>'+ 'Click '  + '<b>' + 'OK' + '</b>'+ ' to go back to the Login Page.' ,
       buttons: ['OK']
     });
     alert.present(prompt);

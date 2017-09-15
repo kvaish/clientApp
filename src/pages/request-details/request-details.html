@@ -1,0 +1,51 @@
+<!--
+  Generated template for the RequestDetailsPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Service Details</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+   <ion-list >
+
+     <ion-item>
+       <p class="heading">Servicing: </p>{{request.reqtype}}
+     </ion-item>
+
+     <ion-item>
+       <p class="heading">Job Registered: </p>{{request.createdate}}
+     </ion-item>
+
+     <ion-item>
+       <p class="heading">Service Requested on: </p>{{request.date}}
+     </ion-item>
+
+     <ion-item>
+       <p class="heading">Description: </p>{{request.reqdesc}}
+     </ion-item>
+
+     <ion-item>
+       <p class="heading">Current Status: </p>{{request.status}}
+     </ion-item>
+
+     <ion-item>
+       <p class="heading">At: </p> {{address}} 
+     </ion-item>
+
+     <ion-item *ngIf="request.status == 'Assigned'">
+      <ion-icon name="person" item-left large ></ion-icon>
+      <h2>Mohan Kumar</h2>
+      <p>Service scheduled at 8:pm.</p>
+     </ion-item>
+    
+
+   </ion-list>
+</ion-content>

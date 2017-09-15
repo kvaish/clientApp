@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
+import { Component, ElementRef } from '@angular/core';
+import { App ,IonicPage, NavController, NavParams, AlertController, Tabs } from 'ionic-angular';
 import { RequestProvider } from '../../providers/request/request';
 import { DatePicker } from '@ionic-native/date-picker';
+import {Storage} from '@ionic/Storage';
 
 /**
  * Generated class for the CreateRequestPage page.
@@ -15,19 +16,31 @@ import { DatePicker } from '@ionic-native/date-picker';
   templateUrl: 'create-request.html',
 })
 export class CreateRequestPage {
-
+  //storage:Storage;
   request:{
     reqtype:string,
-    phone:number,
+    actype:string,
     reqdesc:string,
-    status:string
+    capacity:string,
+    date:string,
+    clientid:string
   }
-  reqtype:string;
-  phone:number;
-  reqdesc:string;
-  status:string;
-  date: any;
-  constructor(private datePicker: DatePicker, public navCtrl: NavController, public alertCtrl: AlertController, public navParams: NavParams,private requestProvider:RequestProvider) {
+
+    reqtype:string;
+    actype:string;
+    reqdesc:string;
+    capacity:string;
+    date:any;
+    clientid:string;
+
+  constructor(private app: App, private datePicker: DatePicker, public navCtrl: NavController, public alertCtrl: AlertController,
+              public navParams: NavParams,private requestProvider:RequestProvider,private storage:Storage, private element: ElementRef) {
+                //this.storage = storage;
+                this.storage.get('name').then(name=>{
+                  this.clientid = name;
+                  
+                });
+
     console.log(this.navParams.get('coordinates'));
   }
 
@@ -35,26 +48,40 @@ export class CreateRequestPage {
     console.log('ionViewDidLoad RequestPage');
   }
 
+  ngOnInit(): void {
+		this.adjust();
+	}
+
   logRequest(){
+    if(this.date == 'now' || this.date == 'Now'){
+      //alert('date is now');
+      this.date = new Date();
+    }
+    console.log(this.date);
     const newRequest={
       reqtype:this.reqtype,
-      phone:this.phone,
+      actype:this.actype,
       reqdesc:this.reqdesc,
-      status:this.status,
+      capacity:this.capacity,
       location: this.navParams.get('coordinates'),
       address: this.navParams.get('address'),
+      clientid:this.clientid,
       date: this.date
     }
+    //alert(this.date)
     console.log(newRequest);
       this.requestProvider.logRequest(newRequest).subscribe((request)=>{
-      if(request == 'done'){
+        
+      if(request == "done"){
         this.requestProvider.showPopup('Success', 'Request Logged Successfully!');
-        this.navCtrl.setRoot('OnGoingRequestsPage');
+        this.navCtrl.setRoot(this.navCtrl.getActive().component)
+        var t: Tabs = this.navCtrl.parent;
+        t.select(1);
       }
       else{
         this.requestProvider.showPopup('Error', 'Could not Log Request, Please try again!');
       }
-      console.log(request);
+     
     });
   }
 
@@ -68,10 +95,18 @@ export class CreateRequestPage {
         //let input:any = document.getElementById("date") as HTMLInputElement;
         //input.value = date;
         this.date = date;
-        alert(this.date);
       },
       err => console.log('Error occurred while getting date: ', err)
     );
   }
   
+  adjust(): void {
+		let ta = this.element.nativeElement.querySelector("textarea");
+		
+		if (ta) {
+			ta.style.overflow = "hidden";
+			ta.style.height = "auto";
+			ta.style.height = ta.scrollHeight + "px";
+		}
+	}
 }

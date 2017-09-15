@@ -24,15 +24,30 @@
       <ion-row>
         <ion-col>
           <ion-list inset>
+
+            <ion-item>
+              <ion-label floating>Name</ion-label>
+              <ion-input type="text"  name="name" [(ngModel)]="name" required></ion-input>
+            </ion-item>
             
             <ion-item>
               <ion-label floating>Email</ion-label>
               <ion-input type="text"  name="email" [(ngModel)]="email" required></ion-input>
             </ion-item>
-            
+
             <ion-item>
               <ion-label floating>Password</ion-label>
               <ion-input type="password"  name="password" [(ngModel)]="password" required></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label floating>Phone</ion-label>
+              <ion-input type="text"  name="phone" [(ngModel)]="phone" required></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label floating>Address</ion-label>
+              <ion-textarea [(ngModel)]="address" name="address" rows="3" ></ion-textarea>
             </ion-item>
             
           </ion-list>

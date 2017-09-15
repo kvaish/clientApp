@@ -15,13 +15,13 @@ import 'rxjs/add/operator/map';
 export class AuthServiceProvider {
 
   constructor(public http: Http, private alertCtrl: AlertController) {
-    console.log('Hello RequestProvider Provider');
+    
   }
 
   register(newUser){
     var headers = new Headers;
     headers.append('Content-Type','application/json');
-    return this.http.post('http://10.100.1.4:3000/register',newUser,{headers:headers}).map(res=>res.json());
+    return this.http.post('http://localhost:3000/register',newUser,{headers:headers}).map(res=>res.json());
   }
 
   login(user){
@@ -29,7 +29,7 @@ export class AuthServiceProvider {
     var headers = new Headers;
     headers.append('Authorisation','application/json');
     headers.append('Content-Type','application/json');
-    return this.http.post('http://10.100.1.4:3000/login',user,{headers:headers}).map((res)=>res.json());
+    return this.http.post('http://localhost:3000/login',user,{headers:headers}).map((res)=>res.json());
   }
 
 
